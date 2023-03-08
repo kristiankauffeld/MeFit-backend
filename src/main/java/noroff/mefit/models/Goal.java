@@ -4,6 +4,7 @@ package noroff.mefit.models;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 public class Goal {
@@ -21,5 +22,19 @@ public class Goal {
 
     @OneToOne(mappedBy = "goal")
     private Profile profile;
+
+    // TODO should goals be able to have more than one program?
+    @OneToOne
+    @JoinColumn(name = "program_id")
+    private Program program;
+
+    @ManyToMany
+    @JoinTable(
+            name = "goal_workout",
+            joinColumns = {@JoinColumn(name = "goal_id")},
+            inverseJoinColumns = {@JoinColumn(name = "workout_id")}
+    )
+    private Set<Workout> workouts;
+
 
 }

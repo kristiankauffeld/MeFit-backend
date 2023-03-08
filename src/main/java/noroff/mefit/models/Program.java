@@ -2,6 +2,8 @@ package noroff.mefit.models;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 public class Program {
     @Id
@@ -15,4 +17,14 @@ public class Program {
 
     @OneToOne(mappedBy = "program")
     private Profile profile;
+    @OneToOne(mappedBy = "program")
+    private Goal goal;
+
+    @ManyToMany
+    @JoinTable(
+            name = "program_workout",
+            joinColumns = {@JoinColumn(name = "program_id")},
+            inverseJoinColumns = {@JoinColumn(name = "workout_id")}
+    )
+    private Set<Workout> workouts;
 }

@@ -3,7 +3,7 @@ package noroff.mefit.models;
 import jakarta.persistence.*;
 
 @Entity
-public class User_acc {
+public class UserAcc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -20,7 +20,7 @@ public class User_acc {
     @Column(length = 10, nullable = true)
     private boolean isAdmin;
 
-    @OneToOne(mappedBy = "user_acc")
+    @OneToOne(mappedBy = "userAcc")
     private Profile profile;
 
 }

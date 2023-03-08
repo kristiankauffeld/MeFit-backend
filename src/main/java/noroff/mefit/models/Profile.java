@@ -25,7 +25,7 @@ public class Profile {
     /// Relations
     @OneToOne
     @JoinColumn(name = "user_id")
-    private User_acc user_acc;
+    private UserAcc userAcc;
 
     @OneToOne
     @JoinColumn(name = "address_id")
