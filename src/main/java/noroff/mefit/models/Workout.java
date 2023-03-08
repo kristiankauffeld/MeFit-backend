@@ -25,6 +25,15 @@ public class Workout {
     @ManyToMany(mappedBy = "workouts")
     private Set<Goal> goals;
 
+    @ManyToMany
+    @JoinTable(
+            name = "workout_set",
+            joinColumns = @JoinColumn(name = "workout_id"),
+            inverseJoinColumns = @JoinColumn(name = "set_id")
+    )
+    private Set<noroff.mefit.models.Set> sets ;
+
+
 
 
 }

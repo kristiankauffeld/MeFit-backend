@@ -14,7 +14,8 @@ public class Program {
     @Column(length = 50, nullable = false)
     private String category;
 
-
+    // relationships
+    //TODO does program need foreign keys to all entities? so far not added.
     @OneToOne(mappedBy = "program")
     private Profile profile;
     @OneToOne(mappedBy = "program")
