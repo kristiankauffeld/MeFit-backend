@@ -14,7 +14,7 @@ public class Exercise {
 
     @Column(name = "target_muscle_group")
     @Enumerated(EnumType.STRING)
-    private String targetMuscleGroup; //TODO Should this be set of ENUMs?
+    private Muscles muscle_group;
 
     @Column(length = 100, nullable = false)
     private String imageURL; 
