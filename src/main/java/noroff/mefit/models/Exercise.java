@@ -23,6 +23,6 @@ public class Exercise {
     private String videoURL;
 
     @OneToMany(mappedBy = "exercise")
-    private Set<ExerciseSet> exerciseSets ;
+    private java.util.Set<Set> Sets ;
 
 }
