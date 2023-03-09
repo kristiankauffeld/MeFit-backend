@@ -12,7 +12,8 @@ public class Exercise {
     @Column(name = "description", length = 100, columnDefinition="TEXT")
     private String description;
 
-    @Column(length = 100, nullable = false)
+    @Column(name = "target_muscle_group")
+    @Enumerated(EnumType.STRING)
     private String targetMuscleGroup; //TODO Should this be set of ENUMs?
 
     @Column(length = 100, nullable = false)
