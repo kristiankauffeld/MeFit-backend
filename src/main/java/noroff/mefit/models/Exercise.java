@@ -9,17 +9,16 @@ public class Exercise {
     private int id;
     @Column(length = 100, nullable = false)
     private String name;
-    @Column(name = "description", length = 100, columnDefinition="TEXT")
+    @Column(name = "description", columnDefinition="TEXT")
     private String description;
 
     @Column(name = "target_muscle_group")
-    @Enumerated(EnumType.STRING)
-    private Muscles muscle_group;
+    private String muscle_group;
 
-    @Column(length = 100, nullable = false)
+    @Column(name="image_url", nullable = false)
     private String imageURL; 
 
-    @Column(length = 255, nullable = true)
+    @Column(name="video_url", nullable = true)
     private String videoURL;
 
     @OneToMany(mappedBy = "exercise")
