@@ -19,7 +19,7 @@ public class Exercise {
     private String imageURL; 
 
     @Column(length = 255, nullable = true)
-    private String vidLink;
+    private String videoURL;
 
     @OneToMany(mappedBy = "exercise")
     private java.util.Set<Set> sets ;
