@@ -9,7 +9,7 @@ public class Exercise {
     private int id;
     @Column(length = 100, nullable = false)
     private String name;
-    @Column(length = 100, nullable = false)
+    @Column(name = "description", length = 100, columnDefinition="TEXT")
     private String description;
 
     @Column(length = 100, nullable = false)
