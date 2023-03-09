@@ -16,7 +16,7 @@ public class Exercise {
     private String targetMuscleGroup; //TODO Should this be set of ENUMs?
 
     @Column(length = 100, nullable = false)
-    private String image; //TODO decide whether to use blob or bytea to store image.
+    private String imageURL; 
 
     @Column(length = 255, nullable = true)
     private String vidLink;
