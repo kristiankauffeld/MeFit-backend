@@ -17,7 +17,7 @@ public class UserAcc {
     private String last_name;
     @Column(length = 10, nullable = true)
     private boolean isContributor;
-    @Column(length = 10, nullable = true)
+    @Column(nullable = false)
     private boolean isAdmin;
 
     @OneToOne(mappedBy = "userAcc")
