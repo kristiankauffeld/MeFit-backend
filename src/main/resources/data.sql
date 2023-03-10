@@ -2,7 +2,7 @@
 INSERT INTO user_acc ("first_name", is_admin, is_contributor, "last_name", "password") VALUES ('Woodrow',false,false,'Farnham','1234' ); -- 1
 
 -- address
-INSERT INTO address ("address_line1","address_line2","address_line3","city","country","postal_code") VALUES (null,null,null,null,null,null);--1
+INSERT INTO address ("address_line1","address_line2","address_line3","city","country","postal_code") VALUES ('The Jolly Roger','Cabin 3B','Deep Down','Atlantis','Oceania','666');--1
 
 -- goal
 INSERT INTO goal (acheived, "end_date") VALUES (false,'2023-03-28');
@@ -12,7 +12,7 @@ INSERT INTO goal (acheived, "end_date") VALUES (false,'2023-03-28');
 INSERT INTO program ("name","category") VALUES ('Beginner work capacity','Calisthenics');
 
 -- profile
-INSERT INTO profile (user_id,address_id,goal_id,program_id,weight, height, disability, "medical_condition") VALUES (1,null,null,null,75,175,true,'wooden leg, one eye'); -- 1
+INSERT INTO profile (user_id,address_id,goal_id,program_id,weight, height, disability, "medical_condition") VALUES (1,1,1,1,75,175,true,'wooden leg, one eye'); -- 1
 
 
 -- Excercies
@@ -23,9 +23,9 @@ INSERT INTO exercise ("name", "description","target_muscle_group", "image_url", 
 
 
 -- set
-INSERT INTO "set" ( exercise_id, exercise_repetitions) VALUES (1,10);--1
-INSERT INTO "set" ( exercise_id, exercise_repetitions) VALUES (2,10);--2
-INSERT INTO "set" ( exercise_id, exercise_repetitions) VALUES (3,10);--3
+INSERT INTO "set" ( exercise_id, exercise_repetitions) VALUES (1,8);--1
+INSERT INTO "set" ( exercise_id, exercise_repetitions) VALUES (2,8);--2
+INSERT INTO "set" ( exercise_id, exercise_repetitions) VALUES (3,8);--3
 INSERT INTO "set" ( exercise_id, exercise_repetitions) VALUES (4,15);--4
 INSERT INTO "set" ( exercise_id, exercise_repetitions) VALUES (1,15);--5
 INSERT INTO "set" ( exercise_id, exercise_repetitions) VALUES (2,15);--6
@@ -40,6 +40,7 @@ INSERT INTO workout_set (workout_id,set_id) VALUES (1,1);
 INSERT INTO workout_set (workout_id,set_id) VALUES (1,2);
 INSERT INTO workout_set (workout_id,set_id) VALUES (1,3);
 INSERT INTO workout_set (workout_id,set_id) VALUES (3,4);
+INSERT INTO workout_set (workout_id,set_id) VALUES (3,5);
 INSERT INTO workout_set (workout_id,set_id) VALUES (3,6);
 
 
