@@ -13,7 +13,8 @@ public class Goal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 5, nullable = false)
+
+    @Column( nullable = false)
     private boolean acheived ;
 
     @Column(name="end_date",length = 100, nullable = false)
