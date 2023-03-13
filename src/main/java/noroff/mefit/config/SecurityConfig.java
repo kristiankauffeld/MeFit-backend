@@ -20,6 +20,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 // Enable security for http requests
                 .authorizeHttpRequests(authorize -> authorize
+                        //.requestMatchers("/api/v1/resources/public").permitAll()
                         // All endpoints are protected
                         .anyRequest().authenticated()
                 )
