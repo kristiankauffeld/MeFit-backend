@@ -1,6 +1,6 @@
 package noroff.mefit.services;
 
-import noroff.mefit.models.UserAcc;
+import noroff.mefit.models.Address;
 import noroff.mefit.repositories.AddressRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,27 +15,29 @@ public class AddressServiceImpl implements AddressService{
     }
 
     @Override
-    public UserAcc findById(Integer integer) {
-        return null;
+    public Address findById(Integer id) {
+        return addressRepository.findById(id).get();
     }
 
     @Override
-    public Collection<UserAcc> findAll() {
-        return null;
+    public Collection<Address> findAll() {
+        return addressRepository.findAll();
     }
 
     @Override
-    public UserAcc add(UserAcc entity) {
-        return null;
+    public Address add(Address entity) {
+        return addressRepository.save(entity);
     }
 
     @Override
-    public UserAcc update(UserAcc entity) {
-        return null;
+    public Address update(Address entity) {
+        return addressRepository.save(entity);
     }
 
     @Override
-    public void deleteById(Integer integer) {
-
+    public void deleteById(Integer id) {
+        Address address = findById(id);
+        //add stuff here to remove relations
+        addressRepository.delete(address);
     }
 }

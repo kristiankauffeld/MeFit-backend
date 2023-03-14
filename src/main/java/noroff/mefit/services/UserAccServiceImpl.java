@@ -26,7 +26,6 @@ public class UserAccServiceImpl implements UserAccService {
     @Override
     public Collection<UserAcc> findAll() {
         return userAccRepository.findAll();
-
     }
     @Override
     public UserAcc add(UserAcc entity) {

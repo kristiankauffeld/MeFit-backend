@@ -1,33 +1,44 @@
 package noroff.mefit.services;
 
 
-import noroff.mefit.models.UserAcc;
+import noroff.mefit.models.Profile;
+import noroff.mefit.repositories.ProfileRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-
+@Service
 public class ProfileServiceImpl implements ProfileService {
-    @Override
-    public UserAcc findById(Integer integer) {
-        return null;
+    private final ProfileRepository profileRepository;
+
+    public ProfileServiceImpl(ProfileRepository profileRepository) {
+        this.profileRepository = profileRepository;
     }
 
     @Override
-    public Collection<UserAcc> findAll() {
-        return null;
+    public Profile findById(Integer id) {
+        return profileRepository.findById(id).get();
     }
 
     @Override
-    public UserAcc add(UserAcc entity) {
-        return null;
+    public Collection<Profile> findAll() {
+        return profileRepository.findAll();
     }
 
     @Override
-    public UserAcc update(UserAcc entity) {
-        return null;
+    public Profile add(Profile entity) {
+        return profileRepository.save(entity);
     }
 
     @Override
-    public void deleteById(Integer integer) {
+    public Profile update(Profile entity) {
+        return profileRepository.save(entity);
+    }
 
+    @Override
+    public void deleteById(Integer id) {
+        Profile profile = findById(id);
+        // remove relations here
+
+        profileRepository.delete(profile);
     }
 }

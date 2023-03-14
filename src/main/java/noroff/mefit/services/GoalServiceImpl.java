@@ -1,32 +1,43 @@
 package noroff.mefit.services;
 
-import noroff.mefit.models.UserAcc;
+import noroff.mefit.models.Goal;
+import noroff.mefit.repositories.GoalRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-
+@Service
 public class GoalServiceImpl implements GoalService{
-    @Override
-    public UserAcc findById(Integer integer) {
-        return null;
+    private final GoalRepository goalRepository;
+
+    public GoalServiceImpl(GoalRepository goalRepository) {
+        this.goalRepository = goalRepository;
     }
 
     @Override
-    public Collection<UserAcc> findAll() {
-        return null;
+    public Goal findById(Integer id) {
+        return goalRepository.findById(id).get();
     }
 
     @Override
-    public UserAcc add(UserAcc entity) {
-        return null;
+    public Collection<Goal> findAll() {
+        return goalRepository.findAll();
     }
 
     @Override
-    public UserAcc update(UserAcc entity) {
-        return null;
+    public Goal add(Goal entity) {
+        return goalRepository.save(entity);
     }
 
     @Override
-    public void deleteById(Integer integer) {
+    public Goal update(Goal entity) {
+        return goalRepository.save(entity);
+    }
 
+    @Override
+    public void deleteById(Integer id) {
+        Goal goal = findById(id);
+        //remove relations here
+
+        goalRepository.delete(goal);
     }
 }
