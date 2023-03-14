@@ -29,6 +29,7 @@ public class AppRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         System.out.println(userAccService.findById(1));
+        System.out.println(userAccService.findAllByName("Fa"));
 
     }
 }
