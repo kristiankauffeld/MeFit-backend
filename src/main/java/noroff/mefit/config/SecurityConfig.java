@@ -1,6 +1,5 @@
 package noroff.mefit.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,7 +19,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 // Enable security for http requests
                 .authorizeHttpRequests(authorize -> authorize
-                        //.requestMatchers("/api/v1/resources/public").permitAll()
+                        .requestMatchers("/api/v1/resources/public").permitAll()
                         // All endpoints are protected
                         .anyRequest().authenticated()
                 )
