@@ -21,21 +21,13 @@ public class UserAccServiceImpl implements UserAccService {
 
 
     @Override
-    public UserAcc findById(Integer id) {
-        return userAccRepository.findById(id).get();
-    }
+    public UserAcc findById(Integer id) { return userAccRepository.findById(id).get(); }
 
     @Override
     public Collection<UserAcc> findAll() {
         return userAccRepository.findAll();
 
     }
-
-    @Override
-    public Collection<UserAcc> findAllByName(String name) {
-        return userAccRepository.findAllByName(name);
-    }
-
     @Override
     public UserAcc add(UserAcc entity) {
         return null;
@@ -47,7 +39,11 @@ public class UserAccServiceImpl implements UserAccService {
     }
 
     @Override
-    public void deleteById(Integer integer) {
+    public void deleteById(Integer id) {
+        UserAcc userAcc = findById(id);
+        //for this work, make sure to delete all data in relations
+        userAccRepository.delete(userAcc);
+
 
     }
 }

@@ -10,5 +10,4 @@ import java.util.Collection;
  */
 
 public interface UserAccService extends CrudService<UserAcc, Integer> {
-    Collection<UserAcc> findAllByName(String name);
 }
