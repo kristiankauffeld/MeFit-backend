@@ -1,8 +1,12 @@
 package noroff.mefit.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,5 +27,6 @@ public class Address {
     private String country;
 
     @OneToOne(mappedBy = "address")
+    @JoinColumn(name = "profile_id")
     private Profile profile;
 }

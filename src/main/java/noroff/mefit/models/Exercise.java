@@ -1,8 +1,14 @@
 package noroff.mefit.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 public class Exercise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +28,6 @@ public class Exercise {
     private String videoURL;
 
     @OneToMany(mappedBy = "exercise")
-    private java.util.Set<SetCount> setCounts;
+    private Set<SetCount> setCounts;
 
 }

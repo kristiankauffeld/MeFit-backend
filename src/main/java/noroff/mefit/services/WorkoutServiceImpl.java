@@ -5,6 +5,8 @@ import noroff.mefit.repositories.WorkoutRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Set;
+
 @Service
 public class WorkoutServiceImpl implements WorkoutService{
     private final WorkoutRepository workoutRepository;
@@ -36,7 +38,21 @@ public class WorkoutServiceImpl implements WorkoutService{
     @Override
     public void deleteById(Integer id) {
         Workout workout = findById(id);
-        //make sure to delete relations
+        workout.getPrograms().forEach(s->{
+            Set tempSet = s.getWorkouts();
+            tempSet.remove(workout);
+            s.setWorkouts(tempSet);
+        });
+        workout.getGoals().forEach(s->{
+            Set tempSet = s.getWorkouts();
+            tempSet.remove(workout);
+            s.setWorkouts(tempSet);
+        });
+        workout.getSetCounts().forEach(s->{
+            Set tempSet = s.getWorkouts();
+            tempSet.remove(workout);
+            s.setWorkouts(tempSet);
+        });
 
         workoutRepository.delete(workout);
 

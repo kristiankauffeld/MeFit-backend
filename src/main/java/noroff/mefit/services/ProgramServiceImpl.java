@@ -5,6 +5,8 @@ import noroff.mefit.repositories.ProgramRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Set;
+
 @Service
 public class ProgramServiceImpl implements ProgramService{
     private final ProgramRepository programRepository;
@@ -36,7 +38,17 @@ public class ProgramServiceImpl implements ProgramService{
     @Override
     public void deleteById(Integer id) {
         Program program = findById(id);
-        // delete relations here
+        if(program.getGoal()!= null){
+            program.getGoal().setProgram(null);
+        }
+        if(program.getProfile()!= null){
+            program.getProfile().setProgram(null);
+        }
+        program.getWorkouts().forEach(s->{
+            Set tempSet = s.getPrograms();
+            tempSet.remove(program);
+            s.setPrograms(tempSet);
+        });
 
         programRepository.delete(program);
     }
