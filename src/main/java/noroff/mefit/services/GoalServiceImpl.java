@@ -5,6 +5,8 @@ import noroff.mefit.repositories.GoalRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Set;
+
 @Service
 public class GoalServiceImpl implements GoalService{
     private final GoalRepository goalRepository;
@@ -36,8 +38,17 @@ public class GoalServiceImpl implements GoalService{
     @Override
     public void deleteById(Integer id) {
         Goal goal = findById(id);
-        //remove relations here
-
+        if(goal.getProgram()!= null){
+            goal.getProgram().setGoal(null);
+        }
+        if(goal.getProfile()!= null){
+            goal.getProfile().setGoal(null);
+        }
+        goal.getWorkouts().forEach(s->{
+            Set tempSet = s.getGoals();
+            tempSet.remove(goal);
+            s.setGoals(tempSet);
+        });
         goalRepository.delete(goal);
     }
 }

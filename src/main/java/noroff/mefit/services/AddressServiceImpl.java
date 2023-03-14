@@ -37,7 +37,9 @@ public class AddressServiceImpl implements AddressService{
     @Override
     public void deleteById(Integer id) {
         Address address = findById(id);
-        //add stuff here to remove relations
+        if(address.getProfile()!= null){
+            address.getProfile().setAddress(null);
+        }
         addressRepository.delete(address);
     }
 }

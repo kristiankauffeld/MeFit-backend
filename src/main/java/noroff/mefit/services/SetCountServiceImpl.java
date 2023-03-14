@@ -5,6 +5,8 @@ import noroff.mefit.repositories.SetCountRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Set;
+
 @Service
 public class SetCountServiceImpl implements SetCountService{
     private final SetCountRepository setCountRepository;
@@ -36,8 +38,13 @@ public class SetCountServiceImpl implements SetCountService{
     @Override
     public void deleteById(Integer id) {
         SetCount setCount = findById(id);
-        //delete relations here
-
-        setCountRepository.delete(setCount);
+        if(setCount != null){
+            setCount.getWorkouts().forEach(s -> {
+                Set tempSet = s.getSetCounts();
+                tempSet.remove(setCount);
+                s.setSetCounts(tempSet);
+            });
+            setCountRepository.delete(setCount);
+        }
     }
 }

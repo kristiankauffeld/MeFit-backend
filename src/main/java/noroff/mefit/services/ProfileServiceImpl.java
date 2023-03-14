@@ -37,8 +37,12 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public void deleteById(Integer id) {
         Profile profile = findById(id);
-        // remove relations here
+        if(profile != null){
+            if(profile.getAddress()!=null){
+                profile.getAddress().setProfile(null);
+            }
 
-        profileRepository.delete(profile);
+            profileRepository.delete(profile);
+        }
     }
 }
