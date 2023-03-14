@@ -1,12 +1,8 @@
 package noroff.mefit.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
 public class UserAcc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
