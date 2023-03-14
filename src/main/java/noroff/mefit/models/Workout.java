@@ -27,11 +27,11 @@ public class Workout {
 
     @ManyToMany
     @JoinTable(
-            name = "workout_set",
+            name = "workout_setcount",
             joinColumns = @JoinColumn(name = "workout_id"),
-            inverseJoinColumns = @JoinColumn(name = "set_id")
+            inverseJoinColumns = @JoinColumn(name = "setcount_id")
     )
-    private Set<noroff.mefit.models.Set> sets ;
+    private Set<SetCount> setCounts;
 
 
 

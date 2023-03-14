@@ -23,4 +23,5 @@ public class UserAcc {
     @OneToOne(mappedBy = "userAcc")
     private Profile profile;
 
+
 }

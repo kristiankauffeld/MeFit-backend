@@ -1,9 +1,10 @@
 package noroff.mefit.models;
 
 import jakarta.persistence.*;
+import java.util.Set;
 
 @Entity
-public class Set {
+public class SetCount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -15,7 +16,7 @@ public class Set {
     @JoinColumn(name = "exercise_id")
     private Exercise exercise;
 
-    @ManyToMany(mappedBy = "sets")
-    private java.util.Set<Workout> workouts;
+    @ManyToMany(mappedBy = "setCounts")
+    private Set<Workout> workouts;
 
 }

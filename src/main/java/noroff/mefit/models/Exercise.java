@@ -22,6 +22,6 @@ public class Exercise {
     private String videoURL;
 
     @OneToMany(mappedBy = "exercise")
-    private java.util.Set<Set> Sets ;
+    private java.util.Set<SetCount> setCounts;
 
 }
