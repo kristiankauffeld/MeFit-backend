@@ -1,32 +1,43 @@
 package noroff.mefit.services;
 
-import noroff.mefit.models.UserAcc;
+import noroff.mefit.models.Exercise;
+import noroff.mefit.repositories.ExerciseRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-
+@Service
 public class ExerciseServiceImpl implements ExerciseService{
-    @Override
-    public UserAcc findById(Integer integer) {
-        return null;
+    private final ExerciseRepository exerciseRepository;
+
+    public ExerciseServiceImpl(ExerciseRepository exerciseRepository) {
+        this.exerciseRepository = exerciseRepository;
     }
 
     @Override
-    public Collection<UserAcc> findAll() {
-        return null;
+    public Exercise findById(Integer id) {
+        return exerciseRepository.findById(id).get();
     }
 
     @Override
-    public UserAcc add(UserAcc entity) {
-        return null;
+    public Collection<Exercise> findAll() {
+        return exerciseRepository.findAll();
     }
 
     @Override
-    public UserAcc update(UserAcc entity) {
-        return null;
+    public Exercise add(Exercise entity) {
+        return exerciseRepository.save(entity);
     }
 
     @Override
-    public void deleteById(Integer integer) {
+    public Exercise update(Exercise entity) {
+        return exerciseRepository.save(entity);
+    }
 
+    @Override
+    public void deleteById(Integer id) {
+        Exercise exercise = findById(id);
+        // remove relations here
+
+        exerciseRepository.delete(exercise);
     }
 }

@@ -1,32 +1,44 @@
 package noroff.mefit.services;
 
-import noroff.mefit.models.UserAcc;
+import noroff.mefit.models.Workout;
+import noroff.mefit.repositories.WorkoutRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-
+@Service
 public class WorkoutServiceImpl implements WorkoutService{
-    @Override
-    public UserAcc findById(Integer integer) {
-        return null;
+    private final WorkoutRepository workoutRepository;
+
+    public WorkoutServiceImpl(WorkoutRepository workoutRepository) {
+        this.workoutRepository = workoutRepository;
     }
 
     @Override
-    public Collection<UserAcc> findAll() {
-        return null;
+    public Workout findById(Integer id) {
+        return workoutRepository.findById(id).get();
     }
 
     @Override
-    public UserAcc add(UserAcc entity) {
-        return null;
+    public Collection<Workout> findAll() {
+        return workoutRepository.findAll();
     }
 
     @Override
-    public UserAcc update(UserAcc entity) {
-        return null;
+    public Workout add(Workout entity) {
+        return workoutRepository.save(entity);
     }
 
     @Override
-    public void deleteById(Integer integer) {
+    public Workout update(Workout entity) {
+        return workoutRepository.save(entity);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        Workout workout = findById(id);
+        //make sure to delete relations
+
+        workoutRepository.delete(workout);
 
     }
 }
