@@ -1,10 +1,13 @@
 package noroff.mefit.models;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -32,4 +35,43 @@ public class Program {
             inverseJoinColumns = {@JoinColumn(name = "workout_id")}
     )
     private Set<Workout> workouts;
+
+    //this is temporary until we use dtos for stuff
+    @JsonGetter("profile")
+    public Integer jsonGetProfile(){
+        if(profile!= null){
+            return profile.getId();
+        }
+        return null;
+    }
+    @JsonGetter("goal")
+    public Integer jsonGetGoal(){
+        if(goal!= null){
+            return goal.getId();
+        }
+        return null;
+    }
+    @JsonGetter("workouts")
+    public List<Integer> jsonGetWorkouts(){
+        if(workouts!= null){
+            return workouts.stream().map(s -> s.getId())
+                    .collect(Collectors.toList());
+        }
+        return null;
+    }
+
+
+
+
+    @Override
+    public String toString() {
+        return "Program{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", profile=" + profile +
+                ", goal=" + goal +
+                ", workouts=" + workouts +
+                '}';
+    }
 }
