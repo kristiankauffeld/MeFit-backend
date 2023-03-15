@@ -10,6 +10,8 @@ INSERT INTO goal (acheived, "end_date") VALUES (false,'2023-03-28');
 -- program
 
 INSERT INTO program ("name","category") VALUES ('Beginner work capacity','Calisthenics');
+INSERT INTO program ("name","category") VALUES ('Beginner fundamental strength','Weightlifting');
+
 
 -- profile
 INSERT INTO profile (user_id,address_id,goal_id,program_id,weight, height, disability, "medical_condition") VALUES (1,1,1,1,75,175,true,'wooden leg, one eye'); -- 1

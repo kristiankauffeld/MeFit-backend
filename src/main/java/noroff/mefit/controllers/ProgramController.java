@@ -5,9 +5,9 @@ import noroff.mefit.services.ProgramService;
 import noroff.mefit.services.ProgramServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.Collection;
 import java.util.Set;
 
@@ -25,4 +25,21 @@ public class ProgramController {
         Collection<Program> toReturn = programService.findAll();
         return ResponseEntity.ok(toReturn);
     }
+
+    @GetMapping("{id}")
+    public ResponseEntity getById(@PathVariable int id) {
+
+        Program program = programService.findById(id);
+
+        return ResponseEntity.ok(program);
+    }
+
+    @PostMapping()
+    public ResponseEntity<Program> add(@RequestBody Program program) {
+        Program programToAdd = programService.add(program);
+        URI location = URI.create("api/v1/programs/" + programToAdd.getId());
+        return ResponseEntity.created(location).build();
+    }
+
+
 }
