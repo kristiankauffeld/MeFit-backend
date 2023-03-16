@@ -20,6 +20,7 @@ public class ProgramController {
         this.programService = programService;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("")
     public ResponseEntity getAll(){
         Collection<Program> toReturn = programService.findAll();
