@@ -37,13 +37,15 @@ public class ProgramServiceImpl implements ProgramService{
 
     @Override
     public void deleteById(Integer id) {
+        //maybe bad
         Program program = findById(id);
         if(program.getGoal()!= null){
             program.getGoal().setProgram(null);
         }
-        if(program.getProfile()!= null){
-            program.getProfile().setProgram(null);
-        }
+        program.getProfiles().forEach(s->{
+            s.setProgram(null);
+        });
+
         program.getWorkouts().forEach(s->{
             Set tempSet = s.getPrograms();
             tempSet.remove(program);

@@ -23,8 +23,8 @@ public class Program {
 
     // relationships
     //TODO does program need foreign keys to all entities? so far not added.
-    @OneToOne(mappedBy = "program")
-    private Profile profile;
+    @OneToMany(mappedBy = "program")
+    private Set<Profile> profiles;
     @OneToOne(mappedBy = "program")
     private Goal goal;
 
@@ -37,10 +37,11 @@ public class Program {
     private Set<Workout> workouts;
 
     //this is temporary until we use dtos for stuff
-    @JsonGetter("profile")
-    public Integer jsonGetProfile(){
-        if(profile!= null){
-            return profile.getId();
+    @JsonGetter("profiles")
+    public List<Integer> jsonGetProfile(){
+        if(profiles!= null){
+            return profiles.stream().map(s -> s.getId())
+                    .collect(Collectors.toList());
         }
         return null;
     }
@@ -69,7 +70,7 @@ public class Program {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", category='" + category + '\'' +
-                ", profile=" + profile +
+                ", profile=" + profiles +
                 ", goal=" + goal +
                 ", workouts=" + workouts +
                 '}';
