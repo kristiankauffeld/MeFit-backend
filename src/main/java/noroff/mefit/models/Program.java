@@ -21,6 +21,9 @@ public class Program {
     @Column(length = 50, nullable = false)
     private String category;
 
+    @Column(length = 100)
+    private String imageURL;
+
     // relationships
     //TODO does program need foreign keys to all entities? so far not added.
     @OneToMany(mappedBy = "program")
