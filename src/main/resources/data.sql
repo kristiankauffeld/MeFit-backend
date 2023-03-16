@@ -45,4 +45,7 @@ INSERT INTO workout_setcount (workout_id,setcount_id) VALUES (3,4);
 INSERT INTO workout_setcount (workout_id,setcount_id) VALUES (3,5);
 INSERT INTO workout_setcount (workout_id,setcount_id) VALUES (3,6);
 
+-- goal_workout
+INSERT INTO goal_workout (goal_id,workout_id) VALUES (1,1);
+
 

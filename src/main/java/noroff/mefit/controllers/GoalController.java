@@ -1,11 +1,8 @@
 package noroff.mefit.controllers;
 
 import noroff.mefit.models.Goal;
-import noroff.mefit.models.Program;
 import noroff.mefit.services.GoalService;
 import noroff.mefit.services.GoalServiceImpl;
-import noroff.mefit.services.ProgramService;
-import noroff.mefit.services.ProgramServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

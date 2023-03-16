@@ -1,6 +1,7 @@
 package noroff.mefit.models;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 @Entity
 @Getter
 @Setter
+@JsonIgnoreProperties({ "setCount", "goals", "programs"})
 public class Workout {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,34 +39,15 @@ public class Workout {
             name = "workout_setcount",
             joinColumns = @JoinColumn(name = "workout_id"),
             inverseJoinColumns = @JoinColumn(name = "setcount_id")
+
     )
     private Set<SetCount> setCounts;
 
+
     // Json Getters
-    @JsonGetter("programs")
-    public List jsonGetPrograms(){
-        if(programs!= null){
-            return programs.stream().map(Program::getId)
-                    .collect(Collectors.toList());
-        }
-        return null;
-    }
-    @JsonGetter("goals")
-    public List jsonGetGoals(){
-        if(goals!= null){
-            return goals.stream().map(Goal::getId)
-                    .collect(Collectors.toList());
-        }
-        return null;
-    }
-    @JsonGetter("setCount")
-    public List jsonGetSetCounts(){
-        if(setCounts!= null){
-            return goals.stream().map(Goal::getId) //TODO wrong item but just to test so change back to setCount
-                    .collect(Collectors.toList());
-        }
-        return null;
-    }
+
+
+
 
 
 }
