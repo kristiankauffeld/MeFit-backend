@@ -39,7 +39,7 @@ public class Profile {
     @JoinColumn(name = "goal_id")
     private Goal goal;
 
-    @OneToOne
+    @ManyToOne
     //@JoinColumn(name = "program_id")
     private Program program;
 }
