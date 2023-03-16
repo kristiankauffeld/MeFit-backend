@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 @Entity
 @Getter
 @Setter
-@JsonIgnoreProperties({ "setCount", "goals", "programs"})
 public class Workout {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,10 +42,32 @@ public class Workout {
     )
     private Set<SetCount> setCounts;
 
+    @JsonGetter("programs")
+    public List<Integer> jsonGetPrograms(){
+        if(programs!= null){
+            return programs.stream().map(s -> s.getId())
+                    .collect(Collectors.toList());
+        }
+        return null;
+    }
 
-    // Json Getters
+    @JsonGetter("goals")
+    public List<Integer> jsonGetGoals(){
+        if(goals!= null){
+            return goals.stream().map(s -> s.getId())
+                    .collect(Collectors.toList());
+        }
+        return null;
+    }
 
-
+    @JsonGetter("setCounts")
+    public List<Integer> jsonGetSetCounts(){
+        if(setCounts!= null){
+            return setCounts.stream().map(s -> s.getId())
+                    .collect(Collectors.toList());
+        }
+        return null;
+    }
 
 
 
