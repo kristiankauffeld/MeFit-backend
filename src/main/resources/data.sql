@@ -9,8 +9,8 @@ INSERT INTO goal (acheived, "end_date") VALUES (false,'2023-03-28');
 
 -- program
 
-INSERT INTO program ("name","category") VALUES ('Beginner work capacity','Calisthenics');
-INSERT INTO program ("name","category") VALUES ('Beginner fundamental strength','Weightlifting');
+INSERT INTO program ("name","author", "category", "imageurl", "description") VALUES ('Beginner work capacity','Arnold Schwarzenegger','Calisthenics', 'https://i.insider.com/62de9331bd18c30019d1a729?width=1000&format=jpeg&auto=webp', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
+INSERT INTO program ("name","author", "category", "imageurl", description) VALUES ('Beginner fundamental strength','The Rock','Weightlifting', 'https://www.muscleandfitness.com/wp-content/uploads/2019/02/ronnie-coleman-squat-barbell-1109.jpg?quality=86&strip=all', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
 
 
 -- profile
