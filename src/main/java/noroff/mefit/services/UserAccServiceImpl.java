@@ -29,7 +29,7 @@ public class UserAccServiceImpl implements UserAccService {
     }
     @Override
     public UserAcc add(UserAcc entity) {
-        return null;
+        return userAccRepository.save(entity);
     }
 
     @Override

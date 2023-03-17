@@ -1,10 +1,13 @@
 package noroff.mefit.models;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -30,4 +33,13 @@ public class Exercise {
     @OneToMany(mappedBy = "exercise")
     private Set<SetCount> setCounts;
 
+
+    @JsonGetter("setCounts")
+    public List<Integer> jsonGetSetCounts(){
+        if(setCounts!= null){
+            return setCounts.stream().map(s -> s.getId())
+                    .collect(Collectors.toList());
+        }
+        return null;
+    }
 }

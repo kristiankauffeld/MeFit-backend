@@ -1,5 +1,6 @@
 package noroff.mefit.models;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,4 +30,12 @@ public class Address {
     @OneToOne(mappedBy = "address")
     @JoinColumn(name = "profile_id")
     private Profile profile;
+
+    @JsonGetter("profile")
+    public Integer jsonGetProfile(){
+        if(profile!= null){
+            return profile.getId();
+        }
+        return null;
+    }
 }
