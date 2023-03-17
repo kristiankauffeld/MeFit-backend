@@ -1,0 +1,45 @@
+package noroff.mefit.controllers;
+
+import noroff.mefit.models.Profile;
+import noroff.mefit.services.ProfileService;
+import noroff.mefit.services.ProfileServiceImpl;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
+import java.util.Collection;
+
+@Controller
+@RequestMapping("api/v1/profiles")
+public class ProfileController {
+    private final ProfileService profileService;
+
+    public ProfileController(ProfileServiceImpl profileService) {
+        this.profileService = profileService;
+    }
+
+    @GetMapping("")
+    public ResponseEntity getAll(){
+        Collection<Profile> toReturn = profileService.findAll();
+        return ResponseEntity.ok(toReturn);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity getById(@PathVariable int id) {
+
+        Profile profile = profileService.findById(id);
+
+        return ResponseEntity.ok(profile);
+    }
+
+    @PostMapping()
+    public ResponseEntity<Profile> add(@RequestBody Profile profile) {
+        Profile profileToAdd = profileService.add(profile);
+        URI location = URI.create("api/v1/profiles/" + profileToAdd.getId());
+        return ResponseEntity.created(location).build();
+    }
+
+
+
+}
