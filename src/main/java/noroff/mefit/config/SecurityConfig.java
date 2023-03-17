@@ -26,6 +26,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/profiles",    "/api/v1/profiles/**").permitAll()//TODO clean up
                         .requestMatchers("/api/v1/user_accs",   "/api/v1/user_accs/**").permitAll()//TODO clean up
                         .requestMatchers("/api/v1/addresses",   "/api/v1/addresses/**").permitAll()//TODO clean up
+                        .requestMatchers("/api/v1/exercises",   "/api/v1/exercises/**").permitAll()//TODO clean up
 
                         //.requestMatchers("/api/v1/resources/authorized").hasAnyAuthority()
                         // All endpoints are protected
