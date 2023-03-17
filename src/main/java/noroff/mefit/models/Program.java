@@ -18,10 +18,17 @@ public class Program {
     private int id;
     @Column(length = 100, nullable = false)
     private String name;
+
+    @Column(length = 100)
+    private String author;
+
+    @Column(columnDefinition="TEXT")
+    private String description;
+
     @Column(length = 50, nullable = false)
     private String category;
 
-    @Column(length = 100)
+    @Column(length = 1000)
     private String imageURL;
 
     // relationships

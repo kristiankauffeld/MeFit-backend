@@ -27,6 +27,7 @@ public class ProgramController {
         return ResponseEntity.ok(toReturn);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("{id}")
     public ResponseEntity getById(@PathVariable int id) {
 
