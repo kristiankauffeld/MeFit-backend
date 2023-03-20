@@ -5,7 +5,7 @@ INSERT INTO user_acc ("first_name", is_admin, is_contributor, "last_name", "pass
 INSERT INTO address ("address_line1","address_line2","address_line3","city","country","postal_code") VALUES ('The Jolly Roger','Cabin 3B','Deep Down','Atlantis','Oceania','666');--1
 
 -- goal
-INSERT INTO goal (acheived, "end_date") VALUES (false,'2023-03-28');
+INSERT INTO goal (name, achieved, "end_date") VALUES ('get swollen', false, '2023-03-28');
 
 -- program
 

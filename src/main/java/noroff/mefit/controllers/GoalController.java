@@ -19,6 +19,7 @@ public class GoalController {
         this.goalService = goalService;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("")
     public ResponseEntity getAll(){
         Collection<Goal> toReturn = goalService.findAll();
