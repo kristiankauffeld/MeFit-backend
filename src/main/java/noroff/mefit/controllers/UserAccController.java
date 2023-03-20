@@ -40,6 +40,30 @@ public class UserAccController {
         URI location = URI.create("api/v1/user_accs/" + userAccToAdd.getId());
         return ResponseEntity.created(location).build();
     }
+    @PutMapping("{id}")
+    public ResponseEntity update(@RequestBody UserAcc userAcc, @PathVariable int id) {
+        // Validates if body is correct
+        if(id != userAcc.getId())
+            return ResponseEntity.badRequest().build();
+        userAccService.update(userAcc);
+        return ResponseEntity.noContent().build();
+    }
 
+    @PatchMapping("{id}")
+    public ResponseEntity patch(@RequestBody UserAcc userAcc, @PathVariable int id) {
+        // Validates if body is correct
+        if(id != userAcc.getId())
+            return ResponseEntity.badRequest().build();
+        userAccService.update(userAcc);
+        return ResponseEntity.noContent().build();
+    }
+/*    @PatchMapping("{id}")
+    public ResponseEntity<?> partialUpdateName(
+            @RequestBody UserAcc partialUpdate, @PathVariable int id) {
+        if(id != partialUpdate.getId())
+            return ResponseEntity.badRequest().build();
+        userAccService.update(partialUpdate);
+        return ResponseEntity.ok("resource updated");
+    }*/
 
 }

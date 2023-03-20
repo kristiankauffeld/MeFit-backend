@@ -34,6 +34,7 @@ public class ProfileServiceImpl implements ProfileService {
         return profileRepository.save(entity);
     }
 
+
     @Override
     public void deleteById(Integer id) {
         Profile profile = findById(id);
