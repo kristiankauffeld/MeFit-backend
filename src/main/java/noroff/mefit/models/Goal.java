@@ -20,9 +20,11 @@ public class Goal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(length = 100, nullable = false)
+    private String name;
 
     @Column( nullable = false)
-    private boolean acheived ;
+    private boolean achieved;
 
     @Column(name="end_date",length = 100, nullable = false)
     private LocalDate endDate ;
