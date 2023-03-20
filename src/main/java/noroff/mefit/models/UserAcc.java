@@ -10,8 +10,7 @@ import lombok.Setter;
 @Setter
 public class UserAcc {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private String id;
     @Column(length = 60, nullable = false)
     private String password;
     @Column(length = 50, nullable = false)
@@ -27,7 +26,7 @@ public class UserAcc {
     private Profile profile;
 
     @JsonGetter("profile")
-    public Integer jsonGetProfile(){
+    public String jsonGetProfile(){
         if(profile!= null){
             return profile.getId();
         }

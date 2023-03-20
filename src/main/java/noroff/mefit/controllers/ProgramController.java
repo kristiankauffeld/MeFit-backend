@@ -12,7 +12,7 @@ import java.net.URI;
 import java.util.Collection;
 import java.util.Set;
 
-@Controller
+@RestController
 @RequestMapping("api/v1/programs")
 public class ProgramController {
     private final ProgramService programService;

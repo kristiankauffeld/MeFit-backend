@@ -21,7 +21,7 @@ public class UserAccServiceImpl implements UserAccService {
 
 
     @Override
-    public UserAcc findById(Integer id) { return userAccRepository.findById(id).get(); }
+    public UserAcc findById(String id) { return userAccRepository.findById(id).get(); }
 
     @Override
     public Collection<UserAcc> findAll() {
@@ -38,7 +38,7 @@ public class UserAccServiceImpl implements UserAccService {
     }
 
     @Override
-    public void deleteById(Integer id) {
+    public void deleteById(String id) {
         UserAcc userAcc = findById(id);
         //for this work, make sure to delete all data in relations
         userAccRepository.delete(userAcc);

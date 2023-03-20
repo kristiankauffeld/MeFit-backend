@@ -50,7 +50,7 @@ public class Goal {
     private Set<Workout> workouts;
 
     @JsonGetter("profile")
-    public Integer jsonGetProfile(){
+    public String jsonGetProfile(){
         if(profile!= null){
             return profile.getId();
         }

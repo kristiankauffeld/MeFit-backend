@@ -48,7 +48,7 @@ public class Program {
 
     //this is temporary until we use dtos for stuff
     @JsonGetter("profiles")
-    public List<Integer> jsonGetProfile(){
+    public List<String> jsonGetProfile(){
         if(profiles!= null){
             return profiles.stream().map(s -> s.getId())
                     .collect(Collectors.toList());
