@@ -1,5 +1,6 @@
 package noroff.mefit.controllers;
 
+import noroff.mefit.models.Goal;
 import noroff.mefit.models.Profile;
 import noroff.mefit.services.ProfileService;
 import noroff.mefit.services.ProfileServiceImpl;
@@ -40,6 +41,13 @@ public class ProfileController {
         return ResponseEntity.created(location).build();
     }
 
-
+    @PutMapping("{id}")
+    public ResponseEntity update(@RequestBody Profile profile, @PathVariable int id) {
+        // Validates if body is correct
+        if(id != profile.getId())
+            return ResponseEntity.badRequest().build();
+        profileService.update(profile);
+        return ResponseEntity.noContent().build();
+    }
 
 }

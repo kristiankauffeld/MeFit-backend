@@ -1,5 +1,6 @@
 package noroff.mefit.controllers;
 
+import noroff.mefit.models.Goal;
 import noroff.mefit.models.Program;
 import noroff.mefit.services.ProgramService;
 import noroff.mefit.services.ProgramServiceImpl;
@@ -42,6 +43,15 @@ public class ProgramController {
         URI location = URI.create("api/v1/programs/" + programToAdd.getId());
         return ResponseEntity.created(location).build();
     }
+    @PutMapping("{id}")
+    public ResponseEntity update(@RequestBody Program program, @PathVariable int id) {
+        // Validates if body is correct
+        if(id != program.getId())
+            return ResponseEntity.badRequest().build();
+        programService.update(program);
+        return ResponseEntity.noContent().build();
+    }
+
 
 
 }

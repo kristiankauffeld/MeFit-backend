@@ -1,5 +1,6 @@
 package noroff.mefit.controllers;
 
+import noroff.mefit.models.Address;
 import noroff.mefit.models.Workout;
 import noroff.mefit.services.WorkoutService;
 import noroff.mefit.services.WorkoutServiceImpl;
@@ -39,7 +40,14 @@ public class WorkoutController {
         URI location = URI.create("api/v1/workouts/" + workoutToAdd.getId());
         return ResponseEntity.created(location).build();
     }
-
+    @PutMapping("{id}")
+    public ResponseEntity update(@RequestBody Workout workout, @PathVariable int id) {
+        // Validates if body is correct
+        if(id != workout.getId())
+            return ResponseEntity.badRequest().build();
+        workoutService.update(workout);
+        return ResponseEntity.noContent().build();
+    }
 
 
 }

@@ -1,6 +1,7 @@
 package noroff.mefit.controllers;
 
 import noroff.mefit.models.Goal;
+import noroff.mefit.models.Goal;
 import noroff.mefit.services.GoalService;
 import noroff.mefit.services.GoalServiceImpl;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +40,15 @@ public class GoalController {
         Goal goalToAdd = goalService.add(goal);
         URI location = URI.create("api/v1/goals/" + goalToAdd.getId());
         return ResponseEntity.created(location).build();
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity update(@RequestBody Goal goal, @PathVariable int id) {
+        // Validates if body is correct
+        if(id != goal.getId())
+            return ResponseEntity.badRequest().build();
+        goalService.update(goal);
+        return ResponseEntity.noContent().build();
     }
 
 

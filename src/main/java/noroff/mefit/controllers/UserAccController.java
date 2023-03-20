@@ -57,13 +57,13 @@ public class UserAccController {
         userAccService.update(userAcc);
         return ResponseEntity.noContent().build();
     }
-    @PatchMapping("{id}")
+/*    @PatchMapping("{id}")
     public ResponseEntity<?> partialUpdateName(
             @RequestBody UserAcc partialUpdate, @PathVariable int id) {
         if(id != partialUpdate.getId())
             return ResponseEntity.badRequest().build();
-        userAccService.update(partialUpdate, id);
+        userAccService.update(partialUpdate);
         return ResponseEntity.ok("resource updated");
-    }
+    }*/
 
 }

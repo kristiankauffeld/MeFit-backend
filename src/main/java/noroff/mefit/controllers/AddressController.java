@@ -1,6 +1,7 @@
 package noroff.mefit.controllers;
 
 import noroff.mefit.models.Address;
+import noroff.mefit.models.UserAcc;
 import noroff.mefit.services.AddressService;
 import noroff.mefit.services.AddressServiceImpl;
 import org.springframework.http.ResponseEntity;
@@ -41,5 +42,13 @@ public class AddressController {
         return ResponseEntity.created(location).build();
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity update(@RequestBody Address address, @PathVariable int id) {
+        // Validates if body is correct
+        if(id != address.getId())
+            return ResponseEntity.badRequest().build();
+        addressService.update(address);
+        return ResponseEntity.noContent().build();
+    }
 
 }
