@@ -11,8 +11,7 @@ import lombok.Setter;
 @Setter
 public class Profile {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private String id;
 
     @Column
     private int age;
@@ -62,7 +61,7 @@ public class Profile {
         return null;
     }
     @JsonGetter("user_acc")
-    public Integer jsonGetUserAcc(){
+    public String jsonGetUserAcc(){
         if(userAcc!= null){
             return userAcc.getId();
         }

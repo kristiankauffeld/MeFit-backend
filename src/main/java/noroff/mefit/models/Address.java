@@ -32,7 +32,7 @@ public class Address {
     private Profile profile;
 
     @JsonGetter("profile")
-    public Integer jsonGetProfile(){
+    public String jsonGetProfile(){
         if(profile!= null){
             return profile.getId();
         }

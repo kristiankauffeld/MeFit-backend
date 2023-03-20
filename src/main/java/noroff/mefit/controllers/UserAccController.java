@@ -3,12 +3,17 @@ package noroff.mefit.controllers;
 import noroff.mefit.models.UserAcc;
 import noroff.mefit.services.UserAccService;
 import noroff.mefit.services.UserAccServiceImpl;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("api/v1/user_accs")
@@ -26,8 +31,23 @@ public class UserAccController {
         return ResponseEntity.ok(toReturn);
     }
 
+    @GetMapping("info")
+    public ResponseEntity getLoggedInUserInfo(@AuthenticationPrincipal Jwt principal){
+        Map<String, String> map = new HashMap<>();
+        map.put("subject", principal.getClaimAsString("sub"));
+        map.put("user_name", principal.getClaimAsString("preferred_username"));
+        map.put("email", principal.getClaimAsString("email"));
+        map.put("first_name", principal.getClaimAsString("given_name"));
+        map.put("last_name", principal.getClaimAsString("family_name"));
+        map.put("roles", String.valueOf(principal.getClaimAsStringList("roles")));
+        return ResponseEntity.ok(map);
+
+    }
+
+
+
     @GetMapping("{id}")
-    public ResponseEntity getById(@PathVariable int id) {
+    public ResponseEntity getById(@PathVariable String id) {
 
         UserAcc userAcc = userAccService.findById(id);
 
@@ -41,7 +61,7 @@ public class UserAccController {
         return ResponseEntity.created(location).build();
     }
     @PutMapping("{id}")
-    public ResponseEntity update(@RequestBody UserAcc userAcc, @PathVariable int id) {
+    public ResponseEntity update(@RequestBody UserAcc userAcc, @PathVariable String id) {
         // Validates if body is correct
         if(id != userAcc.getId())
             return ResponseEntity.badRequest().build();
@@ -50,7 +70,7 @@ public class UserAccController {
     }
 
     @PatchMapping("{id}")
-    public ResponseEntity patch(@RequestBody UserAcc userAcc, @PathVariable int id) {
+    public ResponseEntity patch(@RequestBody UserAcc userAcc, @PathVariable String id) {
         // Validates if body is correct
         if(id != userAcc.getId())
             return ResponseEntity.badRequest().build();

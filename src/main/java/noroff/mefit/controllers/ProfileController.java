@@ -27,7 +27,7 @@ public class ProfileController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity getById(@PathVariable int id) {
+    public ResponseEntity getById(@PathVariable String id) {
 
         Profile profile = profileService.findById(id);
 
@@ -42,7 +42,7 @@ public class ProfileController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity update(@RequestBody Profile profile, @PathVariable int id) {
+    public ResponseEntity update(@RequestBody Profile profile, @PathVariable String id) {
         // Validates if body is correct
         if(id != profile.getId())
             return ResponseEntity.badRequest().build();

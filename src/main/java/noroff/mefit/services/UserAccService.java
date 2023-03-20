@@ -9,5 +9,5 @@ import java.util.Collection;
  * Providing basic CRUD functionality through CrudService and any extended functionality.
  */
 
-public interface UserAccService extends CrudService<UserAcc, Integer> {
+public interface UserAccService extends CrudService<UserAcc, String> {
 }
