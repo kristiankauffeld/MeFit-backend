@@ -14,18 +14,14 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column
+    private int age;
+
     @Column(length = 5, nullable = true)
     private float weight ;
 
     @Column(length = 5, nullable = true)
     private float height ;
-
-    @Column(length = 255, nullable = true)
-    private String disability;
-
-    @Column(name="medical_condition", length = 255, nullable = true)
-    private String medicalConditions;
-
 
     /// Relations
     @OneToOne
