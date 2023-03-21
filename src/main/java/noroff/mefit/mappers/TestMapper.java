@@ -6,22 +6,19 @@ import noroff.mefit.models.SetCount;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.mapstruct.factory.Mappers;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface TestMapper {
-
+    //TestMapper INSTANCE = Mappers.getMapper(TestMapper.class);
+    //@Mapping(target = "setCounts", ignore = true)
     ExerciseDTO exerciseDTO(Exercise exercise);
 
-    @Mapping(target = "setCounts", ignore = true)
+    //@Mapping(target = "setCounts", ignore = true)
     Exercise exerciseDtoToExercise(ExerciseDTO exerciseDTO);
 
-/*    @Named("setCountsToInts")
-    default Set<Integer> map(Set<SetCount> source) {
-        if (source == null) return null;
-        return source.stream().map(s -> s.getExercise_repetitions()).collect(Collectors.toSet());
-    }*/
 
 }
