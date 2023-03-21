@@ -4,10 +4,11 @@ import lombok.*;
 import noroff.mefit.models.SetCount;
 
 import java.util.Set;
+
 @Getter
 @Setter
 @Data
-public class ExerciseDTO {
+public class ExerciseGetDTO {
 
         private int id;
 
@@ -21,5 +22,5 @@ public class ExerciseDTO {
 
         private String videoURL;
 
-        //private Set<SetCount> setCounts;
+        private Set<SetCount> setCounts;
 }
