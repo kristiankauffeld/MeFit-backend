@@ -1,5 +1,7 @@
 package noroff.mefit.controllers;
 
+import noroff.mefit.dtos.ExerciseDTO;
+import noroff.mefit.mappers.TestMapper;
 import noroff.mefit.models.Exercise;
 import noroff.mefit.services.ExerciseService;
 import noroff.mefit.services.ExerciseServiceImpl;
@@ -14,9 +16,11 @@ import java.util.Collection;
 @RequestMapping("api/v1/exercises")
 public class ExerciseController {
     private final ExerciseService exerciseService;
+    private final TestMapper testMapper;
 
-    public ExerciseController(ExerciseServiceImpl exerciseService) {
+    public ExerciseController(ExerciseServiceImpl exerciseService, TestMapper testMapper) {
         this.exerciseService = exerciseService;
+        this.testMapper = testMapper;
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -26,12 +30,22 @@ public class ExerciseController {
         return ResponseEntity.ok(toReturn);
     }
 
+/*
     @GetMapping("{id}")
     public ResponseEntity getById(@PathVariable int id) {
 
         Exercise exercise = exerciseService.findById(id);
 
         return ResponseEntity.ok(exercise);
+    }
+*/
+
+    @GetMapping("{id}")
+    public ResponseEntity getById(@PathVariable int id) {
+
+        ExerciseDTO exerciseDTO = testMapper.exerciseDTO(exerciseService.findById(id));
+
+        return ResponseEntity.ok(exerciseDTO);
     }
 
     @PostMapping()
