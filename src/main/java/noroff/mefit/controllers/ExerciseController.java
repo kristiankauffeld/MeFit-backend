@@ -1,6 +1,6 @@
 package noroff.mefit.controllers;
 
-import noroff.mefit.dtos.ExerciseGetDTO;
+import noroff.mefit.dtos.ExerciseDTO;
 import noroff.mefit.mappers.TestMapper;
 import noroff.mefit.models.Exercise;
 import noroff.mefit.services.ExerciseService;
@@ -43,9 +43,9 @@ public class ExerciseController {
     @GetMapping("{id}")
     public ResponseEntity getById(@PathVariable int id) {
 
-        ExerciseGetDTO exerciseGetDTO = testMapper.exerciseGetDTO(exerciseService.findById(id));
+        ExerciseDTO exerciseDTO = testMapper.exerciseDTO(exerciseService.findById(id));
 
-        return ResponseEntity.ok(exerciseGetDTO);
+        return ResponseEntity.ok(exerciseDTO);
     }
 
 /*
@@ -58,10 +58,9 @@ public class ExerciseController {
 */
 
     @PostMapping()
-    public ResponseEntity<Exercise> add(@RequestBody ExerciseGetDTO exerciseGetDTO) {
-
-        Exercise exerciseGetDtoToExercise = testMapper.exerciseDtoToExercise(exerciseGetDTO);
-        Exercise exerciseToAdd = exerciseService.add(exerciseGetDtoToExercise);
+    public ResponseEntity<Exercise> add(@RequestBody ExerciseDTO exerciseDTO) {
+        Exercise exerciseDtoToExercise = testMapper.exerciseDtoToExercise(exerciseDTO);
+        Exercise exerciseToAdd = exerciseService.add(exerciseDtoToExercise);
         URI location = URI.create("api/v1/exercises/" + exerciseToAdd.getId());
         return ResponseEntity.created(location).build();
     }

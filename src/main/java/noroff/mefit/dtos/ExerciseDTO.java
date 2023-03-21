@@ -8,7 +8,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Data
-public class ExerciseGetDTO {
+public class ExerciseDTO {
 
         private int id;
 
