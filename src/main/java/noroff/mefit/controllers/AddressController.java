@@ -1,7 +1,6 @@
 package noroff.mefit.controllers;
 
 import noroff.mefit.models.Address;
-import noroff.mefit.models.UserAcc;
 import noroff.mefit.services.AddressService;
 import noroff.mefit.services.AddressServiceImpl;
 import org.springframework.http.ResponseEntity;

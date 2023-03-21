@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
 public class AppRunner implements ApplicationRunner {
 
 
-    private final UserAccService userAccService;
     private final AddressService addressService;
     private final ProfileService profileService;
     private final ExerciseService exerciseService;
@@ -25,9 +24,9 @@ public class AppRunner implements ApplicationRunner {
     private final GoalService goalService;
     private final ProgramService programService;
     private final WorkoutService workoutService;
-    public AppRunner(UserAccService userAccService, AddressService addressService, ProfileService profileService, ExerciseService exerciseService, SetCountService setCountService, GoalService goalService, ProgramService programService, WorkoutService workoutService) {
+    public AppRunner(AddressService addressService, ProfileService profileService, ExerciseService exerciseService, SetCountService setCountService, GoalService goalService, ProgramService programService, WorkoutService workoutService) {
 
-        this.userAccService = userAccService;
+
         this.addressService = addressService;
         this.profileService = profileService;
         this.exerciseService = exerciseService;

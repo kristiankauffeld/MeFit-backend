@@ -3,7 +3,7 @@
 FROM gradle:7.6.1-jdk17 as build
 
 # Set the working directory
-WORKDIR /home/gradle/project
+WORKDIR /
 
 # Copy the project files into the container
 COPY . .
@@ -21,7 +21,7 @@ FROM openjdk:17-slim
 WORKDIR /app
 
 # Copy the built JAR file from the build container
-COPY --from=build /home/gradle/project/build/libs/*.jar app.jar
+COPY --from=build /build/libs/*.jar app.jar
 
 # Expose the application port
 EXPOSE 8080

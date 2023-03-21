@@ -1,6 +1,5 @@
 package noroff.mefit.controllers;
 
-import noroff.mefit.models.Goal;
 import noroff.mefit.models.Profile;
 import noroff.mefit.services.ProfileService;
 import noroff.mefit.services.ProfileServiceImpl;
@@ -33,7 +32,7 @@ public class ProfileController {
 
         return ResponseEntity.ok(profile);
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping()
     public ResponseEntity<Profile> add(@RequestBody Profile profile) {
         Profile profileToAdd = profileService.add(profile);
