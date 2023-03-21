@@ -31,10 +31,7 @@ public class Profile {
     @Column(length = 5, nullable = true)
     private float height ;
 
-    /// Relations
-/*    @OneToOne
-    @JoinColumn(name = "user_id")
-    private UserAcc userAcc;*/
+
 
     @OneToOne
     @JoinColumn(name = "address_id")
@@ -43,6 +40,9 @@ public class Profile {
     @OneToOne
     @JoinColumn(name = "goal_id")
     private Goal goal;
+
+    @OneToOne
+    private Application application;
 
     @ManyToOne
     //@JoinColumn(name = "program_id")
@@ -69,13 +69,6 @@ public class Profile {
         }
         return null;
     }
-/*    @JsonGetter("user_acc")
-    public String jsonGetUserAcc(){
-        if(userAcc!= null){
-            return userAcc.getId();
-        }
-        return null;
-    }*/
 
 
 
