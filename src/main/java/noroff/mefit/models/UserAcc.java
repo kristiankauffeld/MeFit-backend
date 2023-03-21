@@ -10,17 +10,17 @@ import lombok.Setter;
 @Setter
 public class UserAcc {
     @Id
+    @Column(length = 100, nullable = false)
     private String id;
-    @Column(length = 60, nullable = false)
-    private String password;
-    @Column(length = 50, nullable = false)
+    @Column(length = 60, nullable = true)
+    private String email;
+    @Column(nullable = true)
+    private String role;
+    @Column(length = 50, nullable = true)
     private String first_name;
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = true)
     private String last_name;
-    @Column(length = 10, nullable = true)
-    private boolean isContributor;
-    @Column(nullable = false)
-    private boolean isAdmin;
+
 
     @OneToOne(mappedBy = "userAcc")
     private Profile profile;

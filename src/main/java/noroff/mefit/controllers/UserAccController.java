@@ -30,16 +30,15 @@ public class UserAccController {
         Collection<UserAcc> toReturn = userAccService.findAll();
         return ResponseEntity.ok(toReturn);
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("info")
     public ResponseEntity getLoggedInUserInfo(@AuthenticationPrincipal Jwt principal){
         Map<String, String> map = new HashMap<>();
-        map.put("subject", principal.getClaimAsString("sub"));
-        map.put("user_name", principal.getClaimAsString("preferred_username"));
-        map.put("email", principal.getClaimAsString("email"));
+        map.put("id", principal.getClaimAsString("sub"));
         map.put("first_name", principal.getClaimAsString("given_name"));
+        map.put("email", principal.getClaimAsString("email"));
         map.put("last_name", principal.getClaimAsString("family_name"));
-        map.put("roles", String.valueOf(principal.getClaimAsStringList("roles")));
+        map.put("role", String.valueOf(principal.getClaimAsStringList("roles")));
         return ResponseEntity.ok(map);
 
     }
@@ -53,13 +52,17 @@ public class UserAccController {
 
         return ResponseEntity.ok(userAcc);
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping()
     public ResponseEntity<UserAcc> add(@RequestBody UserAcc userAcc) {
+        System.out.println(userAcc.getId());
         UserAcc userAccToAdd = userAccService.add(userAcc);
         URI location = URI.create("api/v1/user_accs/" + userAccToAdd.getId());
         return ResponseEntity.created(location).build();
     }
+
+
+
     @PutMapping("{id}")
     public ResponseEntity update(@RequestBody UserAcc userAcc, @PathVariable String id) {
         // Validates if body is correct
