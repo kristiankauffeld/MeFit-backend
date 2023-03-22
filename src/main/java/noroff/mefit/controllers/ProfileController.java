@@ -31,8 +31,13 @@ public class ProfileController {
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("{id}")
     public ResponseEntity<Object> getById(@PathVariable String id) {
-        Profile profile = profileService.findById(id);
-        return ResponseEntity.ok(profile);
+        try{
+            Profile profile = profileService.findById(id);
+            return ResponseEntity.ok(profile);
+        } catch(NoSuchElementException e){
+            e.getStackTrace();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
 
 
     }
