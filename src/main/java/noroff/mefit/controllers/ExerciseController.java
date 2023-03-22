@@ -39,7 +39,7 @@ public class ExerciseController {
     public ResponseEntity<Exercise> add(@RequestBody Exercise exercise) {
         Exercise exerciseToAdd = exerciseService.add(exercise);
         URI location = URI.create("api/v1/exercises/" + exerciseToAdd.getId());
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(exercise);
     }
     @PutMapping("{id}")
     public ResponseEntity update(@RequestBody Exercise exercise, @PathVariable int id) {

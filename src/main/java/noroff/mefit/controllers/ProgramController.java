@@ -36,12 +36,12 @@ public class ProgramController {
 
         return ResponseEntity.ok(program);
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping()
     public ResponseEntity<Program> add(@RequestBody Program program) {
         Program programToAdd = programService.add(program);
         URI location = URI.create("api/v1/programs/" + programToAdd.getId());
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(program);
     }
     @PutMapping("{id}")
     public ResponseEntity update(@RequestBody Program program, @PathVariable int id) {
