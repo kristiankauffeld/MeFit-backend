@@ -15,7 +15,7 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public Profile findById(Integer id) {
+    public Profile findById(String id) {
         return profileRepository.findById(id).get();
     }
 
@@ -34,8 +34,9 @@ public class ProfileServiceImpl implements ProfileService {
         return profileRepository.save(entity);
     }
 
+
     @Override
-    public void deleteById(Integer id) {
+    public void deleteById(String id) {
         Profile profile = findById(id);
         if(profile != null){
             if(profile.getAddress()!=null){

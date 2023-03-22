@@ -16,7 +16,7 @@ public class Program {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(length = 100, nullable = false)
+    @Column(length = 100, nullable = true)
     private String name;
 
     @Column(length = 100)
@@ -25,7 +25,7 @@ public class Program {
     @Column(columnDefinition="TEXT")
     private String description;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = true)
     private String category;
 
     @Column(length = 1000)
@@ -48,7 +48,7 @@ public class Program {
 
     //this is temporary until we use dtos for stuff
     @JsonGetter("profiles")
-    public List<Integer> jsonGetProfile(){
+    public List<String> jsonGetProfile(){
         if(profiles!= null){
             return profiles.stream().map(s -> s.getId())
                     .collect(Collectors.toList());

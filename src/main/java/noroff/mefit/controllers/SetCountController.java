@@ -1,5 +1,6 @@
 package noroff.mefit.controllers;
 
+import noroff.mefit.models.Program;
 import noroff.mefit.models.SetCount;
 import noroff.mefit.services.SetCountService;
 import noroff.mefit.services.SetCountServiceImpl;
@@ -37,9 +38,16 @@ public class SetCountController {
     public ResponseEntity<SetCount> add(@RequestBody SetCount setCount) {
         SetCount setCountToAdd = setCountService.add(setCount);
         URI location = URI.create("api/v1/set_counts/" + setCountToAdd.getId());
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(setCount);
     }
-
+    @PutMapping("{id}")
+    public ResponseEntity update(@RequestBody SetCount setCount, @PathVariable int id) {
+        // Validates if body is correct
+        if(id != setCount.getId())
+            return ResponseEntity.badRequest().build();
+        setCountService.update(setCount);
+        return ResponseEntity.noContent().build();
+    }
 
 
 }

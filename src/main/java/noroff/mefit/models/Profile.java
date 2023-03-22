@@ -11,8 +11,19 @@ import lombok.Setter;
 @Setter
 public class Profile {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(length = 100, nullable = false)
+    private String id;
+    @Column(length = 60, nullable = true)
+    private String email;
+    @Column(nullable = true)
+    private String role;
+    @Column(length = 50, nullable = true)
+    private String first_name;
+    @Column(length = 50, nullable = true)
+    private String last_name;
+
+    @Column
+    private int age;
 
     @Column(length = 5, nullable = true)
     private float weight ;
@@ -20,17 +31,7 @@ public class Profile {
     @Column(length = 5, nullable = true)
     private float height ;
 
-    @Column(length = 255, nullable = true)
-    private String disability;
 
-    @Column(name="medical_condition", length = 255, nullable = true)
-    private String medicalConditions;
-
-
-    /// Relations
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private UserAcc userAcc;
 
     @OneToOne
     @JoinColumn(name = "address_id")
@@ -39,6 +40,9 @@ public class Profile {
     @OneToOne
     @JoinColumn(name = "goal_id")
     private Goal goal;
+
+    @OneToOne
+    private Application application;
 
     @ManyToOne
     //@JoinColumn(name = "program_id")
@@ -62,13 +66,6 @@ public class Profile {
     public Integer jsonGetAddress(){
         if(address!= null){
             return address.getId();
-        }
-        return null;
-    }
-    @JsonGetter("user_acc")
-    public Integer jsonGetUserAcc(){
-        if(userAcc!= null){
-            return userAcc.getId();
         }
         return null;
     }

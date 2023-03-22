@@ -38,8 +38,16 @@ public class AddressController {
     public ResponseEntity<Address> add(@RequestBody Address address) {
         Address addressToAdd = addressService.add(address);
         URI location = URI.create("api/v1/addresss/" + addressToAdd.getId());
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(address);
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity update(@RequestBody Address address, @PathVariable int id) {
+        // Validates if body is correct
+        if(id != address.getId())
+            return ResponseEntity.badRequest().build();
+        addressService.update(address);
+        return ResponseEntity.noContent().build();
+    }
 
 }

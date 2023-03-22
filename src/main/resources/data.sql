@@ -1,11 +1,11 @@
 -- user_acc
-INSERT INTO user_acc ("first_name", is_admin, is_contributor, "last_name", "password") VALUES ('Woodrow',false,false,'Farnham','1234' ); -- 1
+/*INSERT INTO user_acc ("first_name", is_admin, is_contributor, "last_name", "password") VALUES ('Wojak', false, false,'Derp','1234' ); -- 1*/
 
 -- address
 INSERT INTO address ("address_line1","address_line2","address_line3","city","country","postal_code") VALUES ('The Jolly Roger','Cabin 3B','Deep Down','Atlantis','Oceania','666');--1
 
 -- goal
-INSERT INTO goal (name, achieved, "end_date") VALUES ('get swollen', false, '2023-03-28');
+INSERT INTO goal (name, achieved, start_date, end_date) VALUES ('get swollen', false, '03-01-2023', '03-08-2023');
 
 -- program
 
@@ -14,7 +14,7 @@ INSERT INTO program ("name","author", "category", "imageurl", description) VALUE
 
 
 -- profile
-INSERT INTO profile (user_id,address_id,goal_id,program_id,weight, height, disability, "medical_condition") VALUES (1,1,1,1,75,175,true,'wooden leg, one eye'); -- 1
+/*INSERT INTO profile (user_id, address_id, goal_id, program_id, age, weight, height) VALUES (1, 1, 1, 1, 25, 60, 168); -- 1*/
 
 
 -- Excercies

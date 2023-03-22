@@ -26,8 +26,11 @@ public class Goal {
     @Column( nullable = false)
     private boolean achieved;
 
+    @Column(name="start_date", length=100, nullable = false)
+    private String startDate;
+
     @Column(name="end_date",length = 100, nullable = false)
-    private LocalDate endDate ;
+    private String endDate ;
 
 
     @OneToOne(mappedBy = "goal")
@@ -47,7 +50,7 @@ public class Goal {
     private Set<Workout> workouts;
 
     @JsonGetter("profile")
-    public Integer jsonGetProfile(){
+    public String jsonGetProfile(){
         if(profile!= null){
             return profile.getId();
         }

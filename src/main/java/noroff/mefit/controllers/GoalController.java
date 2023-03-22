@@ -1,8 +1,11 @@
 package noroff.mefit.controllers;
 
 import noroff.mefit.models.Goal;
+import noroff.mefit.models.Goal;
 import noroff.mefit.services.GoalService;
 import noroff.mefit.services.GoalServiceImpl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +28,7 @@ public class GoalController {
         Collection<Goal> toReturn = goalService.findAll();
         return ResponseEntity.ok(toReturn);
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("{id}")
     public ResponseEntity getById(@PathVariable int id) {
 
@@ -33,12 +36,21 @@ public class GoalController {
 
         return ResponseEntity.ok(goal);
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping()
     public ResponseEntity<Goal> add(@RequestBody Goal goal) {
         Goal goalToAdd = goalService.add(goal);
         URI location = URI.create("api/v1/goals/" + goalToAdd.getId());
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(goal);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity update(@RequestBody Goal goal, @PathVariable int id) {
+        // Validates if body is correct
+        if(id != goal.getId())
+            return ResponseEntity.badRequest().build();
+        goalService.update(goal);
+        return ResponseEntity.noContent().build();
     }
 
 
