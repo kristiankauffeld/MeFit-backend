@@ -38,7 +38,7 @@ public class WorkoutController {
     public ResponseEntity<Workout> add(@RequestBody Workout workout) {
         Workout workoutToAdd = workoutService.add(workout);
         URI location = URI.create("api/v1/workouts/" + workoutToAdd.getId());
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(workout);
     }
     @PutMapping("{id}")
     public ResponseEntity update(@RequestBody Workout workout, @PathVariable int id) {

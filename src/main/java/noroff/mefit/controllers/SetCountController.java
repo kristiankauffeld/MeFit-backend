@@ -38,7 +38,7 @@ public class SetCountController {
     public ResponseEntity<SetCount> add(@RequestBody SetCount setCount) {
         SetCount setCountToAdd = setCountService.add(setCount);
         URI location = URI.create("api/v1/set_counts/" + setCountToAdd.getId());
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(setCount);
     }
     @PutMapping("{id}")
     public ResponseEntity update(@RequestBody SetCount setCount, @PathVariable int id) {

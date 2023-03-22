@@ -38,7 +38,7 @@ public class AddressController {
     public ResponseEntity<Address> add(@RequestBody Address address) {
         Address addressToAdd = addressService.add(address);
         URI location = URI.create("api/v1/addresss/" + addressToAdd.getId());
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(address);
     }
 
     @PutMapping("{id}")
