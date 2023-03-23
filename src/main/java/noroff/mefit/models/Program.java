@@ -35,6 +35,8 @@ public class Program {
     //TODO does program need foreign keys to all entities? so far not added.
     @OneToMany(mappedBy = "program")
     private Set<Profile> profiles;
+
+
     @OneToOne(mappedBy = "program")
     private Goal goal;
 

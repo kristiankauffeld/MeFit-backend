@@ -24,18 +24,38 @@ public class GoalController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("")
-    public ResponseEntity getAll(){
-        Collection<Goal> toReturn = goalService.findAll();
-        return ResponseEntity.ok(toReturn);
+    public ResponseEntity<Collection<Goal>> getAll() {
+        try {
+            // Retrieve all goals from the goal service
+            Collection<Goal> toReturn = goalService.findAll();
+            // Wrap the collection of goals in a ResponseEntity object with a 200 OK status code
+            return ResponseEntity.ok(toReturn);
+        } catch (Exception e) {
+            // Handle any exceptions that occur and return an error response
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
+
+    /**
+     * @param id The ID of the goal to retrieve.
+     * @return A ResponseEntity containing the retrieved goal and a 200 OK status code, or a 404 Not Found status code if no goal is found with the specified ID.
+     */
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("{id}")
-    public ResponseEntity getById(@PathVariable int id) {
-
+    public ResponseEntity<Goal> getById(@PathVariable int id) {
         Goal goal = goalService.findById(id);
-
+        if (goal == null) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(goal);
     }
+
+    /**
+     * Creates a new goal
+     *
+     * @param goal The goal to add.
+     * @return A ResponseEntity containing the added goal and a 201 Created status code, or a 400 Bad Request status code if the goal is invalid.
+     */
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping()
     public ResponseEntity<Goal> add(@RequestBody Goal goal) {
@@ -45,13 +65,11 @@ public class GoalController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity update(@RequestBody Goal goal, @PathVariable int id) {
+    public ResponseEntity<Goal> update(@RequestBody Goal goal, @PathVariable int id) {
         // Validates if body is correct
-        if(id != goal.getId())
+        if (id != goal.getId())
             return ResponseEntity.badRequest().build();
         goalService.update(goal);
         return ResponseEntity.noContent().build();
     }
-
-
 }
