@@ -58,11 +58,8 @@ public class Goal {
     }
 
     @JsonGetter("program")
-    public Integer jsonGetProgram(){
-        if(program!= null){
-            return program.getId();
-        }
-        return null;
+    public Program jsonGetProgram(){
+        return program;
     }
     @JsonGetter("workouts")
     public List<Integer> jsonGetWorkouts(){
@@ -72,7 +69,5 @@ public class Goal {
         }
         return null;
     }
-
-
 
 }
