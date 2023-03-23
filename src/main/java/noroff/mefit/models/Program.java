@@ -46,6 +46,7 @@ public class Program {
             joinColumns = {@JoinColumn(name = "program_id")},
             inverseJoinColumns = {@JoinColumn(name = "workout_id")}
     )
+
     private Set<Workout> workouts;
 
     //this is temporary until we use dtos for stuff
@@ -64,14 +65,14 @@ public class Program {
         }
         return null;
     }
-    @JsonGetter("workouts")
+    /*@JsonGetter("workouts")
     public List<Integer> jsonGetWorkouts(){
         if(workouts!= null){
             return workouts.stream().map(s -> s.getId())
                     .collect(Collectors.toList());
         }
         return null;
-    }
+    }*/
 
 
 

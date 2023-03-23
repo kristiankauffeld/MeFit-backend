@@ -31,8 +31,6 @@ public class Profile {
     @Column(length = 5, nullable = true)
     private float height ;
 
-
-
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
