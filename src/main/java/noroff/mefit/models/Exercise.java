@@ -2,6 +2,7 @@ package noroff.mefit.models;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,12 +35,13 @@ public class Exercise {
     private Set<SetCount> setCounts;
 
 
-    @JsonGetter("setCounts")
+
+   /* @JsonGetter("setCounts")
     public List<Integer> jsonGetSetCounts(){
         if(setCounts!= null){
             return setCounts.stream().map(s -> s.getId())
                     .collect(Collectors.toList());
         }
         return null;
-    }
+    }*/
 }
