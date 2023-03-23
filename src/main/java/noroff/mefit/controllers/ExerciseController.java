@@ -1,9 +1,8 @@
 package noroff.mefit.controllers;
 
 
-import noroff.mefit.dtos.ExerciseDTO;
+import noroff.mefit.dtos.ExerciseGetDTO;
 import noroff.mefit.mappers.ExerciseMapper;
-import noroff.mefit.models.Address;
 import noroff.mefit.models.Exercise;
 import noroff.mefit.services.ExerciseService;
 import noroff.mefit.services.ExerciseServiceImpl;
@@ -11,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -28,9 +26,9 @@ public class ExerciseController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("")
-    public ResponseEntity<Collection<ExerciseDTO>> getAll(){
+    public ResponseEntity<Collection<ExerciseGetDTO>> getAll() {
         Collection<Exercise> exercises = exerciseService.findAll();
-        Collection<ExerciseDTO> exerciseDTOs = exercises.stream()
+        Collection<ExerciseGetDTO> exerciseDTOs = exercises.stream()
                 .map(exerciseMapper::exerciseDTO)
                 .collect(Collectors.toList());
 
@@ -40,19 +38,20 @@ public class ExerciseController {
     @GetMapping("{id}")
     public ResponseEntity getById(@PathVariable int id) {
 
-        ExerciseDTO exerciseDTO = exerciseMapper.exerciseDTO(exerciseService.findById(id));
+        ExerciseGetDTO exerciseDTO = exerciseMapper.exerciseDTO(exerciseService.findById(id));
 
         return ResponseEntity.ok(exerciseDTO);
     }
+}
 
 
-    @PostMapping()
+    /*@PostMapping()
     public ResponseEntity<Exercise> add(@RequestBody ExerciseDTO exerciseDTO) {
         Exercise dtoToExercise = exerciseMapper.exerciseDtoToExercise(exerciseDTO);
         Exercise exerciseToAdd = exerciseService.add(dtoToExercise);
         URI location = URI.create("api/v1/exercises/" + exerciseToAdd.getId());
 
-        return ResponseEntity.created(location).body(exercise);
+        return ResponseEntity.created(location).body(dtoToExercise);
     }
     
     @PutMapping("{id}")
@@ -76,6 +75,4 @@ public class ExerciseController {
     ExerciseDTO updatedDto = exerciseMapper.exerciseDTO(existingExercise);
     return ResponseEntity.ok(updatedDto);
 
-}
-
-}
+}*/
