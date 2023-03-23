@@ -66,8 +66,14 @@ public class ProfileController {
         if(!id.equals(profile.getId())){
             return ResponseEntity.badRequest().build();
         }
+        Profile oldProfile = profileService.findById(id);
+        oldProfile.setAge(profile.getAge());
+        oldProfile.setWeight(profile.getWeight());
+        oldProfile.setHeight(profile.getHeight());
 
-        profileService.update(profile);
+
+
+        profileService.update(oldProfile);
         return ResponseEntity.noContent().build();
     }
 
