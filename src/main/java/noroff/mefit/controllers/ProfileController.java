@@ -3,6 +3,7 @@ package noroff.mefit.controllers;
 import noroff.mefit.models.Profile;
 import noroff.mefit.services.ProfileService;
 import noroff.mefit.services.ProfileServiceImpl;
+import org.apache.coyote.Response;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,24 +32,41 @@ public class ProfileController {
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("{id}")
     public ResponseEntity<Object> getById(@PathVariable String id) {
-        Profile profile = profileService.findById(id);
-        return ResponseEntity.ok(profile);
+        try{
+            Profile profile = profileService.findById(id);
+            return ResponseEntity.ok(profile);
+        } catch(NoSuchElementException e){
+            e.getStackTrace();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
 
 
     }
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping()
     public ResponseEntity<Profile> add(@RequestBody Profile profile) {
-        Profile profileToAdd = profileService.add(profile);
-        URI location = URI.create("api/v1/profiles/" + profileToAdd.getId());
-        return ResponseEntity.created(location).body(profile);
-    }
+        try {
+            Profile profileToAdd = profileService.add(profile);
+            URI location = URI.create("api/v1/profiles/" + profileToAdd.getId());
+            return ResponseEntity.created(location).body(profile);
+        }
+        catch (Error e){
+            e.getStackTrace();
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
 
+
+
+
+    }
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("{id}")
     public ResponseEntity update(@RequestBody Profile profile, @PathVariable String id) {
-        // Validates if body is correct
-        if(id != profile.getId())
+
+        if(!id.equals(profile.getId())){
             return ResponseEntity.badRequest().build();
+        }
+
         profileService.update(profile);
         return ResponseEntity.noContent().build();
     }

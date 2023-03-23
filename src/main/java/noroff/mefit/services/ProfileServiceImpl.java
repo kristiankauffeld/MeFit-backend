@@ -26,6 +26,10 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public Profile add(Profile entity) {
+        if(profileRepository.findById(entity.getId()).isPresent()){
+            System.out.println("hej");
+            return entity;
+        }
         return profileRepository.save(entity);
     }
 
