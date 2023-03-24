@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -17,62 +18,32 @@ import java.util.stream.Collectors;
 @RequestMapping("api/v1/exercises")
 public class ExerciseController {
     private final ExerciseService exerciseService;
-    private final ExerciseMapper exerciseMapper;
 
-    public ExerciseController(ExerciseServiceImpl exerciseService, ExerciseMapper exerciseMapper) {
+    public ExerciseController(ExerciseServiceImpl exerciseService) {
         this.exerciseService = exerciseService;
-        this.exerciseMapper = exerciseMapper;
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("")
-    public ResponseEntity<Collection<ExerciseGetDTO>> getAll() {
-        Collection<Exercise> exercises = exerciseService.findAll();
-        Collection<ExerciseGetDTO> exerciseDTOs = exercises.stream()
-                .map(exerciseMapper::exerciseDTO)
-                .collect(Collectors.toList());
-
-        return ResponseEntity.ok().body(exerciseDTOs);
+    public ResponseEntity getAll(){
+        Collection<Exercise> toReturn = exerciseService.findAll();
+        return ResponseEntity.ok(toReturn);
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("{id}")
     public ResponseEntity getById(@PathVariable int id) {
 
-        ExerciseGetDTO exerciseDTO = exerciseMapper.exerciseDTO(exerciseService.findById(id));
+        Exercise exercise = exerciseService.findById(id);
 
-        return ResponseEntity.ok(exerciseDTO);
+        return ResponseEntity.ok(exercise);
     }
-}
-
-
-    /*@PostMapping()
-    public ResponseEntity<Exercise> add(@RequestBody ExerciseDTO exerciseDTO) {
-        Exercise dtoToExercise = exerciseMapper.exerciseDtoToExercise(exerciseDTO);
-        Exercise exerciseToAdd = exerciseService.add(dtoToExercise);
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping()
+    public ResponseEntity<Exercise> add(@RequestBody Exercise exercise) {
+        Exercise exerciseToAdd = exerciseService.add(exercise);
         URI location = URI.create("api/v1/exercises/" + exerciseToAdd.getId());
-
-        return ResponseEntity.created(location).body(dtoToExercise);
-    }
-    
-    @PutMapping("{id}")
-    public ResponseEntity update(@RequestBody Exercise exercise, @PathVariable int id) {
-        // Validates if body is correct
-        if(id != exercise.getId())
-            return ResponseEntity.badRequest().build();
-        exerciseService.update(exercise);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.created(location).build();
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<ExerciseDTO> update(@PathVariable("id") int id, @RequestBody ExerciseDTO exerciseDTO) {
-    Exercise existingExercise = exerciseService.findById(id);
-    if (existingExercise == null) {
-        return ResponseEntity.notFound().build();
-    }
-    exerciseMapper.updateExerciseFromDto(exerciseDTO, existingExercise);
-    exerciseService.update(existingExercise);
 
-    ExerciseDTO updatedDto = exerciseMapper.exerciseDTO(existingExercise);
-    return ResponseEntity.ok(updatedDto);
-
-}*/
+}

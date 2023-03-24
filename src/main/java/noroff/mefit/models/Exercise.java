@@ -31,17 +31,10 @@ public class Exercise {
     @Column(name="video_url", nullable = true)
     private String videoURL;
 
-    @OneToMany(mappedBy = "exercise")
-    private Set<SetCount> setCounts;
+    @Column(name="repetitions")
+    private int repetitions;
+    
 
 
 
-   /* @JsonGetter("setCounts")
-    public List<Integer> jsonGetSetCounts(){
-        if(setCounts!= null){
-            return setCounts.stream().map(s -> s.getId())
-                    .collect(Collectors.toList());
-        }
-        return null;
-    }*/
 }
