@@ -25,14 +25,17 @@ public class Exercise {
     @Column(name = "target_muscle_group")
     private String muscle_group;
 
-    @Column(name="image_url", nullable = false)
+    @Column(name="image_url", nullable = true)
     private String imageURL; 
 
     @Column(name="video_url", nullable = true)
     private String videoURL;
 
-    @Column(name="repetitions")
+    @Column(name="repetitions", nullable = true)
     private int repetitions;
+
+    @Column(name="sets", nullable = true)
+    private int sets;
     
 
 

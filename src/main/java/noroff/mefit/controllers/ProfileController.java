@@ -74,7 +74,7 @@ public class ProfileController {
 
 
         profileService.update(oldProfile);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(oldProfile);
     }
 
 }
