@@ -21,10 +21,10 @@ public class Workout {
     @Column(length = 50, nullable = false)
     private String name;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = true)
     private String type;
 
-    @Column(length = 5, nullable = false)
+    @Column(length = 5, nullable = true)
     private boolean complete;
 
     @ManyToMany(mappedBy = "workouts")
