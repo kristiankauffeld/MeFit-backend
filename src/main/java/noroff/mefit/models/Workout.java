@@ -24,6 +24,7 @@ public class Workout {
     @Column(length = 50, nullable = true)
     private String type;
 
+
     @Column(length = 5, nullable = true)
     private boolean complete;
 
