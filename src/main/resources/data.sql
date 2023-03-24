@@ -9,7 +9,7 @@ INSERT INTO goal (name, achieved, start_date, end_date) VALUES ('get swollen', f
 
 -- program
 
-INSERT INTO program ("name","author", "category", "imageurl", "description") VALUES ('Beginner work capacity','Arnold Schwarzenegger','Calisthenics', 'https://i.insider.com/62de9331bd18c30019d1a729?width=1000&format=jpeg&auto=webp', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
+INSERT INTO program ("name","author", "category", "imageurl", "description") VALUES ('Beginner work capacity','Arnold Schwarzenegger','Calisthenics', 'https://i.insider.com/62de9331bd18c30019d1a729?width=1000&format=jpeg&auto=webp', 'This is a description.');
 INSERT INTO program ("name","author", "category", "imageurl", description) VALUES ('Beginner fundamental strength','The Rock','Weightlifting', 'https://www.muscleandfitness.com/wp-content/uploads/2019/02/ronnie-coleman-squat-barbell-1109.jpg?quality=86&strip=all', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
 
 
@@ -33,9 +33,9 @@ INSERT INTO set_count ( exercise_id, exercise_repetitions) VALUES (1,15);--5
 INSERT INTO set_count ( exercise_id, exercise_repetitions) VALUES (2,15);--6
 
 -- workout
-INSERT INTO workout ("name", "type", complete ) VALUES ('General Warm-up', 'low resistance', true);
-INSERT INTO workout ("name", "type", complete ) VALUES ('Day 1 arms', 'high resistance', false);
-INSERT INTO workout ("name", "type", complete ) VALUES ('Day 3', 'high repetition', false);
+INSERT INTO workout ("name", "type") VALUES ('General Warm-up', 'low resistance');
+INSERT INTO workout ("name", "type") VALUES ('Day 1 arms', 'high resistance');
+INSERT INTO workout ("name", "type") VALUES ('Day 3', 'high repetition');
 
 -- workout_set
 INSERT INTO workout_setcount (workout_id,setcount_id) VALUES (1,1);
@@ -48,4 +48,10 @@ INSERT INTO workout_setcount (workout_id,setcount_id) VALUES (3,6);
 -- goal_workout
 INSERT INTO goal_workout (goal_id,workout_id) VALUES (1,1);
 
+--program_workout
+INSERT INTO program_workout(program_id, workout_id) VALUES(1,1);
+INSERT INTO program_workout(program_id, workout_id) VALUES(1,2);
+
+--activity
+INSERT INTO activity(workout_id, exercise_id, goal_id, completed) VALUES(1, 1, 1, false)
 

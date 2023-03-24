@@ -47,6 +47,7 @@ public class Goal {
             joinColumns = {@JoinColumn(name = "goal_id")},
             inverseJoinColumns = {@JoinColumn(name = "workout_id")}
     )
+
     private Set<Workout> workouts;
 
     @JsonGetter("profile")

@@ -24,9 +24,6 @@ public class Workout {
     @Column(length = 50, nullable = false)
     private String type;
 
-    @Column(length = 5, nullable = false)
-    private boolean complete;
-
     @ManyToMany(mappedBy = "workouts")
     private Set<Program> programs;
 
