@@ -24,13 +24,7 @@ INSERT INTO exercise ("name", "description","target_muscle_group", "image_url", 
 INSERT INTO exercise ("name", "description","target_muscle_group", "image_url", "video_url") VALUES('Pull-up', 'Step up and grasp bar with overhand wide grip.Pull body up until chin is above bar. Lower body until arms and shoulders are fully extended. Repeat.', 'Latissimus Dorsi', 'URL','URL');
 
 
--- set
-INSERT INTO set_count ( exercise_id, exercise_repetitions) VALUES (1,8);--1
-INSERT INTO set_count ( exercise_id, exercise_repetitions) VALUES (2,8);--2
-INSERT INTO set_count ( exercise_id, exercise_repetitions) VALUES (3,8);--3
-INSERT INTO set_count ( exercise_id, exercise_repetitions) VALUES (4,15);--4
-INSERT INTO set_count ( exercise_id, exercise_repetitions) VALUES (1,15);--5
-INSERT INTO set_count ( exercise_id, exercise_repetitions) VALUES (2,15);--6
+
 
 -- workout
 INSERT INTO workout ("name", "type", complete ) VALUES ('General Warm-up', 'low resistance', true);
@@ -38,12 +32,7 @@ INSERT INTO workout ("name", "type", complete ) VALUES ('Day 1 arms', 'high resi
 INSERT INTO workout ("name", "type", complete ) VALUES ('Day 3', 'high repetition', false);
 
 -- workout_set
-INSERT INTO workout_setcount (workout_id,setcount_id) VALUES (1,1);
-INSERT INTO workout_setcount (workout_id,setcount_id) VALUES (1,2);
-INSERT INTO workout_setcount (workout_id,setcount_id) VALUES (1,3);
-INSERT INTO workout_setcount (workout_id,setcount_id) VALUES (3,4);
-INSERT INTO workout_setcount (workout_id,setcount_id) VALUES (3,5);
-INSERT INTO workout_setcount (workout_id,setcount_id) VALUES (3,6);
+
 
 -- goal_workout
 INSERT INTO goal_workout (goal_id,workout_id) VALUES (1,1);

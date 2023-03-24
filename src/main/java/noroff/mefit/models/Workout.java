@@ -33,14 +33,7 @@ public class Workout {
     @ManyToMany(mappedBy = "workouts")
     private Set<Goal> goals;
 
-    @ManyToMany
-    @JoinTable(
-            name = "workout_setcount",
-            joinColumns = @JoinColumn(name = "workout_id"),
-            inverseJoinColumns = @JoinColumn(name = "setcount_id")
 
-    )
-    private Set<SetCount> setCounts;
 
     @JsonGetter("programs")
     public List<Integer> jsonGetPrograms(){
@@ -60,14 +53,7 @@ public class Workout {
         return null;
     }
 
-    @JsonGetter("setCounts")
-    public List<Integer> jsonGetSetCounts(){
-        if(setCounts!= null){
-            return setCounts.stream().map(s -> s.getId())
-                    .collect(Collectors.toList());
-        }
-        return null;
-    }
+
 
 
 

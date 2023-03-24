@@ -60,7 +60,7 @@ public class ProfileController {
 
     }
     @CrossOrigin(origins = "http://localhost:3000")
-    @PutMapping("{id}")
+    @PatchMapping("{id}")
     public ResponseEntity update(@RequestBody Profile profile, @PathVariable String id) {
 
         if(!id.equals(profile.getId())){
