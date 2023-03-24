@@ -36,7 +36,6 @@ public class ExerciseServiceImpl implements ExerciseService{
     @Override
     public void deleteById(Integer id) {
         Exercise exercise = findById(id);
-        exercise.getSetCounts().forEach(s -> s.setExercise(null));
         exerciseRepository.delete(exercise);
 
     }

@@ -20,18 +20,16 @@ public class AppRunner implements ApplicationRunner {
     private final AddressService addressService;
     private final ProfileService profileService;
     private final ExerciseService exerciseService;
-    private final SetCountService setCountService;
     private final GoalService goalService;
     private final ProgramService programService;
     private final WorkoutService workoutService;
-    public AppRunner(AddressService addressService, ProfileService profileService, ExerciseService exerciseService, SetCountService setCountService, GoalService goalService, ProgramService programService, WorkoutService workoutService) {
+    public AppRunner(AddressService addressService, ProfileService profileService, ExerciseService exerciseService, GoalService goalService, ProgramService programService, WorkoutService workoutService) {
 
 
         this.addressService = addressService;
         this.profileService = profileService;
         this.exerciseService = exerciseService;
 
-        this.setCountService = setCountService;
         this.goalService = goalService;
         this.programService = programService;
         this.workoutService = workoutService;

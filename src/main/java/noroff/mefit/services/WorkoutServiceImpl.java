@@ -48,11 +48,7 @@ public class WorkoutServiceImpl implements WorkoutService{
             tempSet.remove(workout);
             s.setWorkouts(tempSet);
         });
-        workout.getSetCounts().forEach(s->{
-            Set tempSet = s.getWorkouts();
-            tempSet.remove(workout);
-            s.setWorkouts(tempSet);
-        });
+
 
         workoutRepository.delete(workout);
 
