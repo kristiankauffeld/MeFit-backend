@@ -5,7 +5,7 @@
 INSERT INTO address ("address_line1","address_line2","address_line3","city","country","postal_code") VALUES ('The Jolly Roger','Cabin 3B','Deep Down','Atlantis','Oceania','666');--1
 
 -- goal
-INSERT INTO goal (name, achieved, start_date, end_date) VALUES ('get swollen', false, '03-01-2023', '03-08-2023');
+--INSERT INTO goal (name, achieved, start_date, end_date) VALUES ('get swollen', false, '03-01-2023', '03-08-2023');
 
 -- program
 
@@ -35,12 +35,12 @@ INSERT INTO workout ("name", "type") VALUES ('Day 3', 'high repetition');
 
 
 -- goal_workout
-INSERT INTO goal_workout (goal_id,workout_id) VALUES (1,1);
+--INSERT INTO goal_workout (goal_id,workout_id) VALUES (1,1);
 
 --program_workout
 INSERT INTO program_workout(program_id, workout_id) VALUES(1,1);
 INSERT INTO program_workout(program_id, workout_id) VALUES(1,2);
 
 --activity
-INSERT INTO activity(workout_id, exercise_id, goal_id, completed) VALUES(1, 1, 1, false)
+--INSERT INTO activity(workout_id, exercise_id, goal_id, completed) VALUES(1, 1, 1, false)
 
