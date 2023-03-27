@@ -43,9 +43,6 @@ public class GoalServiceImpl implements GoalService{
     @Override
     public void deleteById(Integer id) {
         Goal goal = findById(id);
-        if(goal.getProgram()!= null){
-            goal.getProgram().setGoal(null);
-        }
         if(goal.getProfile()!= null){
             goal.getProfile().setGoal(null);
         }
