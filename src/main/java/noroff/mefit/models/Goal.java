@@ -36,6 +36,9 @@ public class Goal {
     @Column(name = "user_id", length = 100, nullable = false)
     private String userId;
 
+    @Column(length = 100, nullable = true)
+    private int programIdd;
+
 
     @ManyToOne
     @JoinColumn(name = "profile_id")
