@@ -1,10 +1,8 @@
 package noroff.mefit.controllers;
 
 import noroff.mefit.models.Goal;
-import noroff.mefit.models.Goal;
-import noroff.mefit.services.GoalService;
-import noroff.mefit.services.GoalServiceImpl;
-import org.springframework.http.HttpHeaders;
+import noroff.mefit.models.Workout;
+import noroff.mefit.services.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,14 +11,22 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.security.Principal;
 import java.util.Collection;
+import java.util.Set;
 
 @Controller
 @RequestMapping("api/v1/goals")
 public class GoalController {
     private final GoalService goalService;
+    private final ProfileService profileService;
 
-    public GoalController(GoalServiceImpl goalService) {
+    private final WorkoutService workoutService;
+    private final ProgramService programService;
+
+    public GoalController(GoalServiceImpl goalService, ProfileService profileService, WorkoutService workoutService, ProgramService programService) {
         this.goalService = goalService;
+        this.profileService = profileService;
+        this.workoutService = workoutService;
+        this.programService = programService;
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -62,11 +68,33 @@ public class GoalController {
     @PostMapping()
     public ResponseEntity<Goal> add(Principal principal, @RequestBody Goal goal) {
         try {
-        String userId = principal.getName(); // Get the user ID from the Principal object
-        goal.setUserId(userId); // Set the user ID associated with the goal
-        Goal goalToAdd = goalService.add(goal);
-        URI location = URI.create("api/v1/goals/" + goalToAdd.getId());
-        return ResponseEntity.created(location).body(goalToAdd);
+            String userId = principal.getName(); // Get the user ID from the Principal object
+            //add goal profile relations
+            goal.setProfile(profileService.findById(userId));
+            Set<Goal> goals = profileService.findById(userId).getGoals();
+            goals.add(goal);
+            profileService.findById(userId).setGoals(goals);
+            //goal.setProgram(programService.findById(goal.getProgram().getId()));
+            //add workout relations
+
+
+            //goal.setWorkouts(goal.getProgram().getWorkouts());
+            /*Set<Workout> workouts = goal.getWorkouts();
+            workouts.forEach(s->{
+                Set<Goal> tempSet = s.getGoals();
+                tempSet.add(goal);
+                s.setGoals(tempSet);
+            });*/
+            //add program
+
+
+
+
+
+            //add the goal to database.
+            Goal goalToAdd = goalService.add(goal);
+            URI location = URI.create("api/v1/goals/" + goalToAdd.getId());
+            return ResponseEntity.created(location).body(goalToAdd);
         } catch (Exception e) {
             // Handle any exceptions that occur and return an error response
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

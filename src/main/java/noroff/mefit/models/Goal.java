@@ -36,11 +36,11 @@ public class Goal {
     @Column(name = "user_id", length = 100, nullable = false)
     private String userId;
 
+
     @ManyToOne
     @JoinColumn(name = "profile_id")
     private Profile profile;
 
-    // TODO should goals be able to have more than one program?
     @ManyToOne
     @JoinColumn(name = "program_id")
     private Program program;
