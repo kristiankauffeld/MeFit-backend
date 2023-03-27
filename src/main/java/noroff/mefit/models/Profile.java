@@ -5,6 +5,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 
 @Entity
 @Getter
@@ -35,9 +39,9 @@ public class Profile {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @OneToOne
+    @OneToMany
     @JoinColumn(name = "goal_id")
-    private Goal goal;
+    private Set<Goal> goals;
 
     @OneToOne
     private Application application;
@@ -53,10 +57,11 @@ public class Profile {
         }
         return null;
     }
-    @JsonGetter("goal")
-    public Integer jsonGetGoal(){
-        if(goal!= null){
-            return goal.getId();
+    @JsonGetter("goals")
+    public List<Integer> jsonGetGoal(){
+        if(goals!= null){
+            return goals.stream().map(s -> s.getId())
+                    .collect(Collectors.toList());
         }
         return null;
     }
