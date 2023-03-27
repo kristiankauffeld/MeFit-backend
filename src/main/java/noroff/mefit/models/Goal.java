@@ -32,13 +32,16 @@ public class Goal {
     @Column(name="end_date",length = 100, nullable = false)
     private String endDate ;
 
+    // Add the userId property
+    @Column(name = "user_id", length = 100, nullable = false)
+    private String userId;
 
     @OneToOne(mappedBy = "goal")
     private Profile profile;
 
     // TODO should goals be able to have more than one program?
     @OneToOne
-    @JoinColumn(name = "program_id")
+    @JoinColumn(name = "program_id", referencedColumnName = "id")
     private Program program;
 
     @ManyToMany
@@ -62,6 +65,7 @@ public class Goal {
     public Program jsonGetProgram(){
         return program;
     }
+
     @JsonGetter("workouts")
     public List<Integer> jsonGetWorkouts(){
         if(workouts!= null){

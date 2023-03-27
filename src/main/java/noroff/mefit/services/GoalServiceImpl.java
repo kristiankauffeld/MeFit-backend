@@ -16,6 +16,11 @@ public class GoalServiceImpl implements GoalService{
     }
 
     @Override
+    public Collection<Goal> findByUserId(String userId) {
+        return goalRepository.findByUserId(userId);
+    }
+
+    @Override
     public Goal findById(Integer id) {
         return goalRepository.findById(id).get();
     }

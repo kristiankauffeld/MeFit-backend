@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.security.Principal;
 import java.util.Collection;
 
 @Controller
@@ -24,10 +25,11 @@ public class GoalController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("")
-    public ResponseEntity<Collection<Goal>> getAll() {
+    public ResponseEntity<Collection<Goal>> getAll(Principal principal) {
         try {
-            // Retrieve all goals from the goal service
-            Collection<Goal> toReturn = goalService.findAll();
+            String userId = principal.getName(); // Get the user ID from the Principal object
+            // Retrieve goals associated with the user ID from the goal service
+            Collection<Goal> toReturn = goalService.findByUserId(userId);
             // Wrap the collection of goals in a ResponseEntity object with a 200 OK status code
             return ResponseEntity.ok(toReturn);
         } catch (Exception e) {
@@ -58,10 +60,17 @@ public class GoalController {
      */
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping()
-    public ResponseEntity<Goal> add(@RequestBody Goal goal) {
+    public ResponseEntity<Goal> add(Principal principal, @RequestBody Goal goal) {
+        try {
+        String userId = principal.getName(); // Get the user ID from the Principal object
+        goal.setUserId(userId); // Set the user ID associated with the goal
         Goal goalToAdd = goalService.add(goal);
         URI location = URI.create("api/v1/goals/" + goalToAdd.getId());
-        return ResponseEntity.created(location).body(goal);
+        return ResponseEntity.created(location).body(goalToAdd);
+        } catch (Exception e) {
+            // Handle any exceptions that occur and return an error response
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PutMapping("{id}")
