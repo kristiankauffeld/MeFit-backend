@@ -27,6 +27,7 @@ public class GoalController {
         this.profileService = profileService;
         this.workoutService = workoutService;
         this.programService = programService;
+
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -73,12 +74,15 @@ public class GoalController {
             goal.setProfile(profileService.findById(userId));
             Set<Goal> goals = profileService.findById(userId).getGoals();
             goals.add(goal);
-            profileService.findById(userId).setGoals(goals);
-            //goal.setProgram(programService.findById(goal.getProgram().getId()));
+
+            goal.setProgram(programService.findById(goal.getProgramIdd()));
+            //goal.setWorkouts(goal.getProgram().getWorkouts());
+
+
             //add workout relations
 
 
-            //goal.setWorkouts(goal.getProgram().getWorkouts());
+            /*goal.setWorkouts(goal.getProgram().getWorkouts());*/
             /*Set<Workout> workouts = goal.getWorkouts();
             workouts.forEach(s->{
                 Set<Goal> tempSet = s.getGoals();
