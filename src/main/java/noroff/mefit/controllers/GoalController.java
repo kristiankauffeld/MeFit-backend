@@ -72,7 +72,7 @@ public class GoalController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("{id}")
     public ResponseEntity<Goal> update(@RequestBody Goal goal, @PathVariable int id) {
         // Validates if body is correct
@@ -80,5 +80,11 @@ public class GoalController {
             return ResponseEntity.badRequest().build();
         goalService.update(goal);
         return ResponseEntity.noContent().build();
+    }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(method = RequestMethod.DELETE, path = "{id}")
+    public ResponseEntity delete(@PathVariable int id){
+        goalService.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 }
