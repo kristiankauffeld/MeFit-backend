@@ -27,9 +27,6 @@ public class Workout {
     @Column(length = 300, nullable = true)
     private String description;
 
-
-
-
     @ManyToMany(mappedBy = "workouts")
     private Set<Program> programs;
 
@@ -66,9 +63,6 @@ public class Workout {
         }
         return null;
     }
-
-
-
 
 
 }
