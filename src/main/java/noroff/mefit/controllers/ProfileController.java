@@ -22,14 +22,14 @@ public class ProfileController {
     public ProfileController(ProfileServiceImpl profileService) {
         this.profileService = profileService;
     }
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @GetMapping("")
     public ResponseEntity getAll(){
         Collection<Profile> toReturn = profileService.findAll();
         return ResponseEntity.ok(toReturn);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @GetMapping("{id}")
     public ResponseEntity<Object> getById(@PathVariable String id) {
         try{
@@ -42,7 +42,7 @@ public class ProfileController {
 
 
     }
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @PostMapping()
     public ResponseEntity<Profile> add(@RequestBody Profile profile) {
         try {
@@ -59,7 +59,7 @@ public class ProfileController {
 
 
     }
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @PatchMapping("{id}")
     public ResponseEntity update(@RequestBody Profile profile, @PathVariable String id) {
 

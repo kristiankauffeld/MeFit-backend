@@ -19,7 +19,7 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @GetMapping("")
     public ResponseEntity getAll(){
         Collection<Address> toReturn = addressService.findAll();
