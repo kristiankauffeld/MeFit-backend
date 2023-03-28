@@ -29,7 +29,6 @@ public class Workout {
     private String description;
 
 
-
     @JsonIgnore
     @ManyToMany(mappedBy = "workouts")
     private Set<Program> programs;
@@ -67,9 +66,6 @@ public class Workout {
         }
         return null;
     }
-
-
-
 
 
 }

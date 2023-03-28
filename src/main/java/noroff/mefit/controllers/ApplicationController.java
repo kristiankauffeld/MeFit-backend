@@ -21,7 +21,7 @@ public class ApplicationController {
         this.applicationService = applicationService;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @GetMapping("")
     public ResponseEntity getAll(){
         Collection<Application> toReturn = applicationService.findAll();

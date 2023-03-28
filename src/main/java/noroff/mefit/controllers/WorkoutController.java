@@ -19,13 +19,13 @@ public class WorkoutController {
     public WorkoutController(WorkoutServiceImpl workoutService) {
         this.workoutService = workoutService;
     }
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @GetMapping("")
     public ResponseEntity getAll(){
         Collection<Workout> toReturn = workoutService.findAll();
         return ResponseEntity.ok(toReturn);
     }
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @GetMapping("{id}")
     public ResponseEntity getById(@PathVariable int id) {
 
@@ -33,14 +33,14 @@ public class WorkoutController {
 
         return ResponseEntity.ok(workout);
     }
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @PostMapping()
     public ResponseEntity<Workout> add(@RequestBody Workout workout) {
         Workout workoutToAdd = workoutService.add(workout);
         URI location = URI.create("api/v1/workouts/" + workoutToAdd.getId());
         return ResponseEntity.created(location).body(workout);
     }
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @PutMapping("{id}")
     public ResponseEntity update(@RequestBody Workout workout, @PathVariable int id) {
         // Validates if body is correct

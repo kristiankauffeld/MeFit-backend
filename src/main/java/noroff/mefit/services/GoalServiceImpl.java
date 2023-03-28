@@ -44,7 +44,10 @@ public class GoalServiceImpl implements GoalService{
     public void deleteById(Integer id) {
         Goal goal = findById(id);
         if(goal.getProfile()!= null){
-            goal.getProfile().setGoal(null);
+            Set tempSet = goal.getProfile().getGoals();
+            tempSet.remove(goal);
+            goal.getProfile().setGoals(tempSet);
+
         }
         goal.getWorkouts().forEach(s->{
             Set tempSet = s.getGoals();

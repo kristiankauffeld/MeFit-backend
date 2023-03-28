@@ -23,13 +23,13 @@ public class ExerciseController {
         this.exerciseService = exerciseService;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @GetMapping("")
     public ResponseEntity getAll(){
         Collection<Exercise> toReturn = exerciseService.findAll();
         return ResponseEntity.ok(toReturn);
     }
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @GetMapping("{id}")
     public ResponseEntity getById(@PathVariable int id) {
 
@@ -37,7 +37,7 @@ public class ExerciseController {
 
         return ResponseEntity.ok(exercise);
     }
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @PostMapping()
     public ResponseEntity<Exercise> add(@RequestBody Exercise exercise) {
         Exercise exerciseToAdd = exerciseService.add(exercise);
