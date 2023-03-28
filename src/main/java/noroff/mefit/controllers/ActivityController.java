@@ -20,7 +20,7 @@ public class ActivityController {
         this.activityService = activityService;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @GetMapping("")
     public ResponseEntity<Collection<Activity>> getAll() {
         try {
@@ -35,7 +35,7 @@ public class ActivityController {
      * @param id The ID of the activity to retrieve.
      * @return A ResponseEntity containing the retrieved activity and a 200 OK status code, or a 404 Not Found status code if no activity is found with the specified ID.
      */
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @GetMapping("{id}")
     public ResponseEntity<Activity> getById(@PathVariable int id) {
         Activity activity = activityService.findById(id);
@@ -51,7 +51,7 @@ public class ActivityController {
      * @param activity The activity to add.
      * @return A ResponseEntity containing the added activity and a 201 Created status code, or a 400 Bad Request status code if the activity is invalid.
      */
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @PostMapping()
     public ResponseEntity<Activity> add(@RequestBody Activity activity) {
         Activity activityToAdd = activityService.add(activity);
@@ -59,6 +59,7 @@ public class ActivityController {
         return ResponseEntity.created(location).body(activity);
     }
 
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @PutMapping("{id}")
     public ResponseEntity<Activity> update(@RequestBody Activity activity, @PathVariable int id) {
         // Validates if body is correct

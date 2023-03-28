@@ -23,14 +23,14 @@ public class ProgramController {
         this.workoutService = workoutService;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @GetMapping("")
     public ResponseEntity getAll(){
         Collection<Program> toReturn = programService.findAll();
         return ResponseEntity.ok(toReturn);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @GetMapping("{id}")
     public ResponseEntity getById(@PathVariable int id) {
 
@@ -38,7 +38,7 @@ public class ProgramController {
 
         return ResponseEntity.ok(program);
     }
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @PostMapping()
     public ResponseEntity<Program> add(@RequestBody Program program) {
         /*Set<Workout> workouts = program.getWorkouts();
