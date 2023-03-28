@@ -24,9 +24,6 @@ public class Workout {
     @Column(length = 50, nullable = true)
     private String type;
 
-
-
-
     @ManyToMany(mappedBy = "workouts")
     private Set<Program> programs;
 
