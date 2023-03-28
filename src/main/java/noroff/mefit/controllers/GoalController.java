@@ -113,6 +113,17 @@ public class GoalController {
         goalService.update(goal);
         return ResponseEntity.noContent().build();
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PatchMapping("{id}")
+    public ResponseEntity<Goal> updateAchieved(@RequestBody Goal goall, @PathVariable int id) {
+        //goalService.findById(id).setAchieved(true);
+        Goal goal = goalService.findById(id);
+        goal.setAchieved(true);
+        goalService.update(goal);
+        return ResponseEntity.ok(goal);
+    }
+
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(method = RequestMethod.DELETE, path = "{id}")
     public ResponseEntity delete(@PathVariable int id){
