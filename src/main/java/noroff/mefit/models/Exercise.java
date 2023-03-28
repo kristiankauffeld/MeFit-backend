@@ -36,8 +36,18 @@ public class Exercise {
 
     @Column(name="sets", nullable = true)
     private int sets;
+
+    @ManyToMany
+    private Set<Workout> workouts;
+
+
+
+
     
 
 
 
 }
+
+
+

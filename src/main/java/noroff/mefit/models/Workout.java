@@ -24,6 +24,9 @@ public class Workout {
     @Column(length = 50, nullable = true)
     private String type;
 
+    @Column(length = 300, nullable = true)
+    private String description;
+
 
 
 
@@ -33,8 +36,19 @@ public class Workout {
     @ManyToMany(mappedBy = "workouts")
     private Set<Goal> goals;
 
+    @ManyToMany
+    private Set<Exercise> exercises;
 
 
+
+    @JsonGetter("exercises")
+    public List<Integer> jsonGetExercises(){
+        if(exercises!= null){
+            return exercises.stream().map(s -> s.getId())
+                    .collect(Collectors.toList());
+        }
+        return null;
+    }
     @JsonGetter("programs")
     public List<Integer> jsonGetPrograms(){
         if(programs!= null){
