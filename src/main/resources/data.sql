@@ -38,8 +38,8 @@ INSERT INTO workout ("name", "type") VALUES ('Day 3', 'high repetition');
 --INSERT INTO goal_workout (goal_id,workout_id) VALUES (1,1);
 
 --program_workout
-INSERT INTO program_workout(program_id, workout_id) VALUES(1,1);
-INSERT INTO program_workout(program_id, workout_id) VALUES(1,2);
+/*INSERT INTO program_workout(program_id, workout_id) VALUES(1,1);
+INSERT INTO program_workout(program_id, workout_id) VALUES(1,2);*/
 
 --activity
 --INSERT INTO activity(workout_id, exercise_id, goal_id, completed) VALUES(1, 1, 1, false)

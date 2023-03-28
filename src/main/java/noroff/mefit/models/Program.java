@@ -64,4 +64,13 @@ import java.util.stream.Collectors;
             return null;
         }
 
+        @JsonGetter("workouts")
+        public List<Integer> jsonGetWorkouts(){
+            if(workouts!= null){
+                return workouts.stream().map(s -> s.getId())
+                        .collect(Collectors.toList());
+            }
+            return null;
+        }
+
     }
