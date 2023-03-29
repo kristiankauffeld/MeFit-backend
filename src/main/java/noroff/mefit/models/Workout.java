@@ -28,6 +28,8 @@ public class Workout {
     @Column(length = 300, nullable = true)
     private String description;
 
+    @Column(length = 100)
+    private String author;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "workouts")
