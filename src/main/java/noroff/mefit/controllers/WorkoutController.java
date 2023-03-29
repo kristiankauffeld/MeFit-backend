@@ -1,6 +1,7 @@
 package noroff.mefit.controllers;
 
 import noroff.mefit.models.Address;
+import noroff.mefit.models.Program;
 import noroff.mefit.models.Workout;
 import noroff.mefit.services.WorkoutService;
 import noroff.mefit.services.WorkoutServiceImpl;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.Collection;
+import java.util.Set;
 
 @Controller
 @RequestMapping("api/v1/workouts")
@@ -49,6 +51,34 @@ public class WorkoutController {
         workoutService.update(workout);
         return ResponseEntity.noContent().build();
     }
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
+    @RequestMapping(method = RequestMethod.DELETE, path = "{id}")
+    public ResponseEntity delete(@PathVariable int id){
+        Workout workout = workoutService.findById(id);
+
+        workout.getPrograms().forEach(s->{
+            Set<Workout> tempSet = s.getWorkouts();
+            tempSet.remove(workout);
+            s.setWorkouts(tempSet);
+        });
+        workout.getGoals().forEach(s->{
+            Set<Workout> tempSet = s.getWorkouts();
+            tempSet.remove(workout);
+            s.setWorkouts(tempSet);
+        });
+        workout.getExercises().forEach(s->{
+            Set<Workout> tempSet = s.getWorkouts();
+            tempSet.remove(workout);
+            s.setWorkouts(tempSet);
+        });
+
+
+        workoutService.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+
+
+
 
 
 }

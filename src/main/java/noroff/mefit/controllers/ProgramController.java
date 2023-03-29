@@ -1,5 +1,6 @@
 package noroff.mefit.controllers;
 
+import noroff.mefit.models.Profile;
 import noroff.mefit.models.Program;
 import noroff.mefit.models.Workout;
 import noroff.mefit.services.ProgramService;
@@ -59,6 +60,27 @@ public class ProgramController {
             return ResponseEntity.badRequest().build();
         programService.update(program);
         return ResponseEntity.noContent().build();
+    }
+
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
+    @RequestMapping(method = RequestMethod.DELETE, path = "{id}")
+    public ResponseEntity delete(@PathVariable int id){
+        Program program = programService.findById(id);
+        program.getProfiles().forEach(s->{
+            s.setProgram(null);
+        });
+        program.getGoals().forEach(s->{
+            s.setProgram(null);
+        });
+        program.getWorkouts().forEach(s->{
+            Set<Program> tempSet = s.getPrograms();
+            tempSet.remove(program);
+            s.setPrograms(tempSet);
+        });
+
+
+        programService.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 
 
